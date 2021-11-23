@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\InventoryController;
+use App\Imports\InventoriesImport;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +22,11 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::get('importExportView', [InventoryController::class, 'importExportView']);
+Route::get('export', [InventoryController::class, 'export'])->name('export');
+Route::post('import', [InventoryController::class, 'import'])->name('import');
+
+Route::get('inventory_import', [InventoryController::class, 'inventoryimportExportView'])->name('inventoryimportExportView');
+Route::post('inventory_import', [InventoryController::class, 'inventory_import'])->name('inventory_import');
+Route::get('inventory_export', [InventoryController::class, 'inventory_export'])->name('inventory_export');

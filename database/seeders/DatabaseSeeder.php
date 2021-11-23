@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use DB;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
         ]);
 
+        //User::factory(20)->create();
     }
 
     // Limpia las tablas

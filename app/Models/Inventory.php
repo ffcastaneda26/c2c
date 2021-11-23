@@ -24,6 +24,7 @@ class Inventory extends Model
         'sales_price',
         'options',
         'images',
+        'last_updated',
         'body',
         'trim'
     ];
