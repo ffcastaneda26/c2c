@@ -4,7 +4,7 @@
             {{ __('Inventory') }}
         </h2>
     </x-slot>
-    <div class="flex flex-cols-2">
+
 
     <div class="mt-2">
        @include('inventory.inventory_search_form')

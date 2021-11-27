@@ -24,6 +24,13 @@ class InventoryController extends Controller
     public $vehicles=[];
     public $image_urls = [];
     public $mileage_from,$mileage_to;
+    public $pages_by_query;
+
+    public function __construct()
+    {
+
+        $this->pages_by_query =12;
+    }
 
     /** Index presenta formulario para los filtros */
     public function inventory(Request $request){
@@ -32,7 +39,6 @@ class InventoryController extends Controller
         if($request->make || $request->body || $request->year  ){
 
             $vehicles = $this->read_vehicles($request);
-            dd($vehicles);
             $search_make = $request->make;
             $search_body = $request->body;
             $search_year = $request->year;
@@ -41,7 +47,7 @@ class InventoryController extends Controller
                             ->orderby('make')
                             ->orderby('year')
                             ->orderby('body')
-                            ->get();
+                            ->paginate($this->pages_by_query);
             $search_make = null;
             $search_body = null;
             $search_year = null;
@@ -123,7 +129,7 @@ class InventoryController extends Controller
     public function query_inventory(Request $request){
 
         $vehicles = $this->read_vehicles($request);
-        dd($vehicles);
+
         return view('inventory.inventory_list',compact('vehicles'));
     }
 
@@ -178,7 +184,7 @@ class InventoryController extends Controller
                                 ->orderby('make')
                                 ->orderby('year')
                                 ->orderby('body')
-                                ->get();
+                                ->paginate($this->pages_by_query);
 
         }
 
@@ -191,7 +197,7 @@ class InventoryController extends Controller
                             ->orderby('make')
                             ->orderby('year')
                             ->orderby('body')
-                            ->get();
+                            ->paginate($this->pages_by_query);
 
         }
 
@@ -205,7 +211,7 @@ class InventoryController extends Controller
                             ->orderby('make')
                             ->orderby('year')
                             ->orderby('body')
-                            ->get();
+                            ->paginate($this->pages_by_query);
         }
 
         // (D) Marca
@@ -216,7 +222,7 @@ class InventoryController extends Controller
                             ->orderby('make')
                             ->orderby('year')
                             ->orderby('body')
-                            ->get();
+                            ->paginate($this->pages_by_query);
         }
 
         // (E) Marca y Tipo
@@ -228,7 +234,7 @@ class InventoryController extends Controller
                             ->orderby('make')
                             ->orderby('year')
                             ->orderby('body')
-                            ->get();
+                            ->paginate($this->pages_by_query);
         }
 
         // (F) Axo-TIpo
@@ -240,7 +246,7 @@ class InventoryController extends Controller
                             ->orderby('make')
                             ->orderby('year')
                             ->orderby('body')
-                            ->get();
+                            ->paginate($this->pages_by_query);
         }
 
         // (G) Solo Tipo
@@ -251,7 +257,7 @@ class InventoryController extends Controller
                             ->orderby('make')
                             ->orderby('year')
                             ->orderby('body')
-                            ->get();
+                            ->paginate($this->pages_by_query);
         }
 
         // (Todos) sin axo-marca-tipo
@@ -261,7 +267,7 @@ class InventoryController extends Controller
                                 ->orderby('make')
                                 ->orderby('year')
                                 ->orderby('body')
-                                ->get();
+                                ->paginate($this->pages_by_query);
         }
 
 
