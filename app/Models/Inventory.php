@@ -15,6 +15,7 @@ class Inventory extends Model
         'stock',
         'year',
         'make',
+        'model',
         'exterior_color',
         'interior_color',
         'mileage',

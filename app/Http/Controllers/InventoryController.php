@@ -8,11 +8,52 @@ use App\Exports\UsersExport;
 use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use App\Imports\InventoryImport;
-use Illuminate\Database\Console\Migrations\RollbackCommand;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Database\Console\Migrations\RollbackCommand;
 
 class InventoryController extends Controller
 {
+
+    public $makesList;
+    public $yearsList=[];
+    public $bodiesList=[];
+    public $make,$years,$makes,$bodies=[];
+    public $year = [];
+    public $body = [];
+    public $vehicles=[];
+    public $image_urls = [];
+    public $mileage_from,$mileage_to;
+
+    /** Index presenta formulario para los filtros */
+    public function inventory(Request $request){
+
+
+        if($request->make || $request->body || $request->year  ){
+
+            $vehicles = $this->read_vehicles($request);
+            dd($vehicles);
+            $search_make = $request->make;
+            $search_body = $request->body;
+            $search_year = $request->year;
+        }else{
+            $vehicles = Inventory::whereNotNull('stock')
+                            ->orderby('make')
+                            ->orderby('year')
+                            ->orderby('body')
+                            ->get();
+            $search_make = null;
+            $search_body = null;
+            $search_year = null;
+        }
+
+
+        $makesList  =  $this->fill_combos('make');
+        $yearsList  =  $this->fill_combos('year');
+        $bodiesList =  $this->fill_combos('body');
+        return view('inventory.inventory',compact('makesList','yearsList','bodiesList','search_make','search_body','search_year','vehicles'));
+    }
+
     /**
     * @return \Illuminate\Support\Collection
     */
@@ -39,6 +80,20 @@ class InventoryController extends Controller
         return back();
     }
 
+    // Llena combos recibiendo el atributo o campo
+    private function fill_combos($attribute){
+        $sql = 'SELECT DISTINCT ' . $attribute . ' as attribute,count(*) as total FROM inventories WHERE ' . $attribute . ' IS NOT NULL AND stock IS NOT NULL GROUP BY '. $attribute . ' ORDER BY ' . $attribute ;
+        $results = DB::select($sql);
+        $result_array = array();
+
+        foreach($results as $result){
+            array_push( $result_array, $result->attribute  . '(' . $result->total . ')');
+        }
+
+        return $result_array;
+
+    }
+
 
     // Importar Inventario
 
@@ -62,4 +117,167 @@ class InventoryController extends Controller
 
 
     }
+
+    /** Consulta de Inventario */
+
+    public function query_inventory(Request $request){
+
+        $vehicles = $this->read_vehicles($request);
+        dd($vehicles);
+        return view('inventory.inventory_list',compact('vehicles'));
+    }
+
+    /** Lee vehículos con los filtros */
+    public function read_vehicles(Request $request){
+
+        $wheremake= $this->where_sql($request->make);
+        $wherebody= $this->where_sql($request->body);
+
+        $whereyear= $this->where_sql($request->year);
+
+        if(!count($whereyear)){
+            $whereyear =[];
+        }
+
+        if(!count($wheremake)){
+            $wheremake =[];
+        }
+
+        if(!count($wherebody)){
+            $wherebody =[];
+        }
+
+        if(!$this->mileage_from){
+            $this->mileage_from =0;
+        }
+
+        if(!$this->mileage_to){
+            $this->mileage_to =999999;
+        }
+
+
+
+        /**+--------------------------------+
+         * |        | Axo   | Marca | Tipo  |
+         * +--------+-------+-------+-------+
+         * | Axo    |  A    |   B   |   F   |
+         * +--------+-------+-------+-------+
+         * | Marca  |  B    |   D   |   E   |
+         * +--------+---------------+-------+
+         * | Tipo   |  C    |   E   |   G   |
+         * +--------+---------------+-------+
+         */
+
+
+            // (A) Solo Axo
+        if(count($whereyear) && !count($wheremake) && !count($wherebody)){
+
+            return Inventory::whereNotNull('stock')
+                                ->wherein('year',$whereyear)
+                                ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
+                                ->orderby('make')
+                                ->orderby('year')
+                                ->orderby('body')
+                                ->get();
+
+        }
+
+        // (B) Axo y Marca
+        if(count($whereyear) && count($wheremake) && !count($wherebody)){
+            return Inventory::whereNotNull('stock')
+                            ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
+                            ->wherein('year',$whereyear)
+                            ->wherein('make',$wheremake)
+                            ->orderby('make')
+                            ->orderby('year')
+                            ->orderby('body')
+                            ->get();
+
+        }
+
+        // (C) Axo - Marca - Tipo
+        if(count($whereyear) && count($wheremake) && count($wherebody)){
+            $this->vehicles = Inventory::whereNotNull('stock')
+                            ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
+                            ->wherein('year',$whereyear)
+                            ->wherein('make',$wheremake)
+                            ->wherein('make',$wherebody)
+                            ->orderby('make')
+                            ->orderby('year')
+                            ->orderby('body')
+                            ->get();
+        }
+
+        // (D) Marca
+        if(!count($whereyear) && count($wheremake) && !count($wherebody)){
+            return Inventory::whereNotNull('stock')
+                            ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
+                            ->wherein('make',$wheremake)
+                            ->orderby('make')
+                            ->orderby('year')
+                            ->orderby('body')
+                            ->get();
+        }
+
+        // (E) Marca y Tipo
+        if(!count($whereyear) && count($wheremake) && count($wherebody)){
+            return Inventory::whereNotNull('stock')
+                            ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
+                            ->wherein('make',$wheremake)
+                            ->wherein('make',$wherebody)
+                            ->orderby('make')
+                            ->orderby('year')
+                            ->orderby('body')
+                            ->get();
+        }
+
+        // (F) Axo-TIpo
+        if(count($whereyear) && !count($wheremake) && count($wherebody)){
+            return Inventory::whereNotNull('stock')
+                            ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
+                            ->wherein('year',$whereyear)
+                            ->wherein('make',$wherebody)
+                            ->orderby('make')
+                            ->orderby('year')
+                            ->orderby('body')
+                            ->get();
+        }
+
+        // (G) Solo Tipo
+        if(!count($whereyear) && !count($wheremake) && count($wherebody)){
+            return Inventory::whereNotNull('stock')
+                            ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
+                            ->wherein('make',$wherebody)
+                            ->orderby('make')
+                            ->orderby('year')
+                            ->orderby('body')
+                            ->get();
+        }
+
+        // (Todos) sin axo-marca-tipo
+        if(!count($whereyear) && !count($wheremake) && !count($wherebody)){
+            return Inventory::whereNotNull('stock')
+                            ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
+                                ->orderby('make')
+                                ->orderby('year')
+                                ->orderby('body')
+                                ->get();
+        }
+
+
+    }
+
+
+    /** Recibe array de select multiple y regresa array solo con valores */
+    private function where_sql($input_array=null){
+        $array=[];
+        if($input_array && count($input_array)){
+            foreach($input_array as $element){
+                array_push($array,substr($element,0, strpos($element, '(')));
+            }
+        }
+        return $array;
+    }
+
+
 }

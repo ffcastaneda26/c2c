@@ -5,5 +5,7 @@
     "Import Users": "Importar Usuarios",
     "Export Users": "Exportar Usuarios",
     "Inventory has been Imported": "Inventario ha sido importado",
-    "Inventory was not Imported": "ATENCION inventario no se ha importado"
+    "Inventory was not Imported": "ATENCION inventario no se ha importado",
+    "Query Inventory": "Consultar Inventario",
+    "Query": "Consultar"
 }

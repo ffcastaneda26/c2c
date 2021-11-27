@@ -1,0 +1,9 @@
+.box_filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button_query {
+    background-color: green;
+}

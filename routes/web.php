@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\InventoryController;
+use App\Http\Livewire\Inventory;
 use App\Imports\InventoriesImport;
 use Illuminate\Support\Facades\Route;
 
@@ -30,3 +31,6 @@ Route::post('import', [InventoryController::class, 'import'])->name('import');
 Route::get('inventory_import', [InventoryController::class, 'inventoryimportExportView'])->name('inventoryimportExportView');
 Route::post('inventory_import', [InventoryController::class, 'inventory_import'])->name('inventory_import');
 Route::get('inventory_export', [InventoryController::class, 'inventory_export'])->name('inventory_export');
+Route::get('inventory', [InventoryController::class, 'inventory'])->name('inventory');
+Route::post('query_inventory', [InventoryController::class, 'query_inventory'])->name('query_inventory');
+
