@@ -35,22 +35,30 @@ class InventoryController extends Controller
     /** Index presenta formulario para los filtros */
     public function inventory(Request $request){
 
+        $search_make = [];
+        $search_body = [];
+        $search_year =[];
+
+
+        if($request->make  ){
+            $search_make = $request->make;
+        }
+        if($request->body  ){
+            $search_body = $request->body;
+        }
+
+        if($request->year  ){
+            $search_year = $request->year;
+        }
 
         if($request->make || $request->body || $request->year  ){
-
             $vehicles = $this->read_vehicles($request);
-            $search_make = $request->make;
-            $search_body = $request->body;
-            $search_year = $request->year;
         }else{
             $vehicles = Inventory::whereNotNull('stock')
                             ->orderby('make')
                             ->orderby('year')
                             ->orderby('body')
                             ->paginate($this->pages_by_query);
-            $search_make = null;
-            $search_body = null;
-            $search_year = null;
         }
 
 
