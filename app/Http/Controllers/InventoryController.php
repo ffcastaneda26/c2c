@@ -29,7 +29,7 @@ class InventoryController extends Controller
     public function __construct()
     {
 
-        $this->pages_by_query =12;
+        $this->pages_by_query =10;
     }
 
     /** Index presenta formulario para los filtros */

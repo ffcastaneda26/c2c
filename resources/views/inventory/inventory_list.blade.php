@@ -1,5 +1,5 @@
 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-    <div class="flex flex-wrap justify-center items-start gap-3 p-2">
+    <div class="flex flex-wrap justify-evenly items-start gap-3 p-2">
         @foreach ($vehicles as $vehicle)
             <article class="mb-4 bg-gray-100 border border-gray-300 rounded shadow-md">
 
@@ -11,26 +11,32 @@
 
 
 
-                <div class="p-3 text-center">
-                    @if($vehicle->year || $vehicle->make || $vehicle->model )
-                        <h3 class="mb-1 text-xl font-bold text-center">{{  $vehicle->year }} {{ $vehicle->make  }} {{  $vehicle->model   }}</h3>
+                    <div class="flex flex-wrap justify-center items-start gap-3 p-2">
+                        <div class="p-3 text-center">
+                            <div class="flex wrap">
+                                @if($vehicle->year || $vehicle->make || $vehicle->model )
+                                    <h3 class="mb-1 text-xl font-bold text-justify">{{  $vehicle->year }} {{ $vehicle->make  }} {{  $vehicle->model   }}</h3>
+                                @else
+                                    <h3>{{ __('No data available') }}</h3>
+                                @endif
+                            </div>
 
-                    @else
-                        <h3>{{ __('No data available') }}</h3>
-                    @endif
 
-                    @if($vehicle->mileage)
-                        <p class="mb-4 uppercase" >{{ number_format($vehicle->mileage, 0, '.', ',') }} {{ __('MILES') }}</p>
-                    @else
-                        <p class="mb-4 uppercase" >{{__('No data available') }} {{ __('MILES') }}</p>
+                            @if($vehicle->mileage)
+                                <p class="mb-4 uppercase" >{{ number_format($vehicle->mileage, 0, '.', ',') }} {{ __('MILES') }}</p>
+                            @else
+                                <p class="mb-4 uppercase" >{{__('No data available') }} {{ __('MILES') }}</p>
 
-                    @endif
+                            @endif
 
-                    @if($vehicle->stock)
-                        <p class="mb-4 uppercase"> STOCK #{{ $vehicle->stock }}</p>
+                            @if($vehicle->stock)
+                                <p class="mb-4 uppercase"> STOCK #{{ $vehicle->stock }}</p>
 
-                    @endif
-                </div>
+                            @endif
+                        </div>
+                    </div>
+
+
 
                 <div class="self-end p-1 mt-1 mb-2">
                     <a class="bg-green-700 text-white px-4 py-2 font-bold text-xs  rounded-xl tracking-wider" href="https://ctcautogroup.com/cars/2016-ford-expedition-1692/">{{ __('Call for Info') }}</a>

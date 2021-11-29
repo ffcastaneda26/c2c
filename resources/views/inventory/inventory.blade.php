@@ -5,15 +5,14 @@
         </h2>
     </x-slot>
 
-
-    <div class="mt-2">
-       @include('inventory.inventory_search_form')
-    </div>
-
-
-    <div class="mt-2">
-        @include('inventory.inventory_list')
-     </div>
+    <div class = "flex_container">
+        <div class = "flex_col_left">
+            @include('inventory.inventory_search_form')
+        </div>
+        <div class = "flex_col_right">
+            @include('inventory.inventory_list')
+        </div>
+    <div>
 
 </x-app-layout>
 
