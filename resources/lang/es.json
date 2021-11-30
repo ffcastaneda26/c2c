@@ -7,5 +7,23 @@
     "Inventory has been Imported": "Inventario ha sido importado",
     "Inventory was not Imported": "ATENCION inventario no se ha importado",
     "Query Inventory": "Consultar Inventario",
-    "Query": "Consultar"
+    "Query": "Consultar",
+    "Filter your Search": "Filtre su búsqueda",
+    "Search Make, Model Or Stock...": "Marca, Modelo o Stock",
+    "Make": "Marca",
+    "All Makes": "Todas las Marcas",
+    "Body Type": "Tipo o Estilo",
+    "All Body Types": "Todos los Tipos",
+    "Year": "Año",
+    "All Years": "Todos los Años",
+    "All": "Todos",
+    "Mileage": "Millas",
+    "From": "Desde",
+    "To": "Hasta",
+    "Filter": "Filtrar",
+    "Not Image": "Imagen no disponble",
+    "No data available": "Dato no disponible",
+    "Texas Inventory": "Inventario Texas",
+    "Oklahoma Inventory": "Inventario OKlahoma"
+
 }

@@ -25,15 +25,26 @@ class InventoryController extends Controller
     public $image_urls = [];
     public $mileage_from,$mileage_to;
     public $pages_by_query;
-
+    public $delar_id= null;
     public function __construct()
     {
-
         $this->pages_by_query =10;
+
     }
 
     /** Index presenta formulario para los filtros */
-    public function inventory(Request $request){
+    public function inventory(Request $request,$dealer_id){
+
+
+        if($dealer_id == 'texas-inventory'){
+            $this->dealer_id = 'coast2coast';
+            $title_dealer ="Texas Inventory";
+        }
+
+        if($dealer_id == 'oklahoma-inventory'){
+            $this->dealer_id = 'crossroads';
+            $title_dealer ="Oklahoma Inventory";
+        }
 
         $search_make = [];
         $search_body = [];
@@ -55,6 +66,7 @@ class InventoryController extends Controller
             $vehicles = $this->read_vehicles($request);
         }else{
             $vehicles = Inventory::whereNotNull('stock')
+                            ->where('dealer_id',$this->dealer_id)
                             ->orderby('make')
                             ->orderby('year')
                             ->orderby('body')
@@ -65,7 +77,10 @@ class InventoryController extends Controller
         $makesList  =  $this->fill_combos('make');
         $yearsList  =  $this->fill_combos('year');
         $bodiesList =  $this->fill_combos('body');
-        return view('inventory.inventory',compact('makesList','yearsList','bodiesList','search_make','search_body','search_year','vehicles'));
+        return view('inventory.real_page',compact('makesList','yearsList','bodiesList',
+                                                  'search_make','search_body','search_year',
+                                                  'title_dealer','dealer_id',
+                                                  'vehicles'));
     }
 
     /**
