@@ -77,7 +77,7 @@ class InventoryController extends Controller
         $makesList  =  $this->fill_combos('make');
         $yearsList  =  $this->fill_combos('year');
         $bodiesList =  $this->fill_combos('body');
-        return view('inventory.real_page',compact('makesList','yearsList','bodiesList',
+        return view('inventory.inventory_page',compact('makesList','yearsList','bodiesList',
                                                   'search_make','search_body','search_year',
                                                   'title_dealer','dealer_id',
                                                   'vehicles'));

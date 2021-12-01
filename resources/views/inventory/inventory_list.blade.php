@@ -6,10 +6,8 @@
                     @if(explode(",", $vehicle->images)[0])
                         <img src="{{explode(",", $vehicle->images)[0] }}" alt="{{ __('Not Image') }}" class="object-none object-center p-1 h-36 w-30">
                     @else
-                           <img src="{{asset('images/default.jpeg') }}" alt="{{ __('Not Image') }}" class="object-none object-center p-1 h-36 w-30">
+                        <img src="{{asset('images/default.jpeg') }}" alt="{{ __('Not Image') }}" class="object-none object-center p-1 h-36 w-30">
                     @endif
-
-
 
                     <div class="flex flex-wrap justify-center items-start gap-3 p-2">
                         <div class="p-3 text-center">

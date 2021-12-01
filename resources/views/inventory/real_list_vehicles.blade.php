@@ -3,12 +3,14 @@
         <div class="vehicle">
             <div class="listing-thumbnail">
 
-               <a href="https://ctcautogroup.com/cars/2016-ford-expedition-1692/">
+                <a href="{{ url('inventory/show/' . $vehicle->id) }}">
                     @if(explode(",", $vehicle->images)[0])
                         <img src="{{explode(",", $vehicle->images)[0] }}" alt="{{ __('Not Image') }}">
+
                     @else
                         <img src="{{ asset('images/default.jpeg') }}" alt="">
                     @endif
+
                 </a>
 
             </div>
