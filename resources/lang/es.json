@@ -14,16 +14,22 @@
     "All Makes": "Todas las Marcas",
     "Body Type": "Tipo o Estilo",
     "All Body Types": "Todos los Tipos",
+    "Engine Type": "Tipo Motor",
     "Year": "Año",
     "All Years": "Todos los Años",
     "All": "Todos",
     "Mileage": "Millas",
+    "Miles": "Millas",
     "From": "Desde",
     "To": "Hasta",
     "Filter": "Filtrar",
     "Not Image": "Imagen no disponble",
     "No data available": "Dato no disponible",
     "Texas Inventory": "Inventario Texas",
-    "Oklahoma Inventory": "Inventario OKlahoma"
+    "Oklahoma Inventory": "Inventario OKlahoma",
+    "Miles data not available": "Millas no disponbiles",
+    "Stock Code not available": "Código de Stock no disponible",
+    "Basic Details": "Detalles Básicos",
+    "Trim data not available": "Datos de motor no disponibles"
 
 }

@@ -149,12 +149,12 @@ class InventoryController extends Controller
 
     /** Consulta de Inventario */
 
-    public function query_inventory(Request $request){
+    // public function query_inventory(Request $request){
 
-        $vehicles = $this->read_vehicles($request);
+    //     $vehicles = $this->read_vehicles($request);
 
-        return view('inventory.inventory_list',compact('vehicles'));
-    }
+    //     return view('inventory.inventory_list',compact('vehicles'));
+    // }
 
     /** Lee vehículos con los filtros */
     public function read_vehicles(Request $request){
@@ -308,5 +308,10 @@ class InventoryController extends Controller
         return $array;
     }
 
+    /** Lee y regresa el vehículo solicitado */
+
+    public function show(Inventory $vehicle){
+        return view('inventory.vehicle_record',compact('vehicle'));
+    }
 
 }
