@@ -1,12 +1,13 @@
 <div class="vehicle-listings">
     @foreach ($vehicles as $vehicle )
+        {{-- <img class="not_img" alt=""> --}}
         <div class="vehicle">
             <div class="listing-thumbnail">
 
                 <a href="{{ url('inventory/show/' . $vehicle->id) }}">
                     @if(explode(",", $vehicle->images)[0])
-                        <img src="{{explode(",", $vehicle->images)[0] }}" alt="{{ __('Not Image') }}">
-
+                        <img  src="{{explode(",", $vehicle->images)[0] }}"
+                                onerror=this.src="{{ asset('images/default.jpeg') }}">
                     @else
                         <img src="{{ asset('images/default.jpeg') }}" alt="">
                     @endif
@@ -31,8 +32,8 @@
                            {{ __('No data available') }}
                         @endif
                     </div>
-                    <div class="vehicle-stocks">STOCK #PF29747</div>
-                    <a href="https://ctcautogroup.com/cars/2016-ford-expedition-1692/" class="price">Call for Info</a>
+                    <div class="vehicle-stocks">STOCK  {{  $vehicle->stock }}</div>
+                    <a href="{{ url('inventory/show/' . $vehicle->id) }}" class="price">Call for Info</a>
                 </div>
             </div>
         </div>
