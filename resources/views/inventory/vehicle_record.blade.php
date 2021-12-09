@@ -6,8 +6,6 @@
 
         @include('inventory.vehicle_record_details')
 
-        {{-- @include('inventory.vehicle_record_footer') --}}
-
     </div>
 </body>
 </html>
