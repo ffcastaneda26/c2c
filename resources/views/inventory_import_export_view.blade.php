@@ -9,15 +9,23 @@
     @endphp --}}
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            @if(Session::has('message'))
-                <p>{{ Session::get('message') }}</p>
-            @endif
+
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <form action="{{ route('inventory_import') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="file" name="file" required class="form-control">
                     <br>
+                    @if(Session::has('error'))
+                        <div class="flex bg-red-500  text-white flex-1 text-center">
+                            <p>{{ Session::get('error') }}</p>
+                        </div>
+                    @endif
 
+                    @if(Session::has('message'))
+                        <div class="flex bg-green-500 text-white flex-auto p-2 mb-2">
+                            <p>{{ Session::get('message') }}</p>
+                        </div>
+                    @endif
 
                     <div class="flex items-center justify-left mt-4">
                         <x-jet-button class="ml-4">

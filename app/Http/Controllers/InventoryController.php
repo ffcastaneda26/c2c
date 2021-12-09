@@ -141,7 +141,7 @@ class InventoryController extends Controller
             return back()->with('message',__('Inventory has been Imported'));
         } catch (Throwable $e) {
             report($e);
-            return back()->with('message',__('Inventory was not Imported'));
+            return back()->with('error',__('Inventory was not Imported'));
         }
 
 
