@@ -95,8 +95,10 @@
     <link rel='shortlink' href='https://ctcautogroup.com/?p=321469' />
     <link rel="alternate" type="application/json+oembed" href="https://ctcautogroup.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fctcautogroup.com%2Fcars%2F2016-ford-expedition-1692%2F" />
     <link rel="alternate" type="text/xml+oembed" href="https://ctcautogroup.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fctcautogroup.com%2Fcars%2F2016-ford-expedition-1692%2F&#038;format=xml" />
-    <script defer src="https://connect.podium.com/widget.js#API_TOKEN=3e209109-3e83-411d-b270-ec27a6ef5ff3" id="podium-widget" data-api-token="3e209109-3e83-411d-b270-ec27a6ef5ff3"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+    <!-- Chat -->
+    {{-- <script defer src="https://connect.podium.com/widget.js#API_TOKEN=3e209109-3e83-411d-b270-ec27a6ef5ff3" id="podium-widget" data-api-token="3e209109-3e83-411d-b270-ec27a6ef5ff3"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics --> --}}
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-YTBQVYGKW6"></script>
     <script>
     window.dataLayer = window.dataLayer || [];

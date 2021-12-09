@@ -93,7 +93,9 @@ var settings = {"ajaxurl":"https:\/\/ctcautogroup.com\/wp-admin\/admin-ajax.php"
 <link rel="https://api.w.org/" href="https://ctcautogroup.com/wp-json/" /><link rel="alternate" type="application/json" href="https://ctcautogroup.com/wp-json/wp/v2/inventory/4" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://ctcautogroup.com/xmlrpc.php?rsd" />
 <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://ctcautogroup.com/wp-includes/wlwmanifest.xml" />
 
-<script defer src="https://connect.podium.com/widget.js#API_TOKEN=3e209109-3e83-411d-b270-ec27a6ef5ff3" id="podium-widget" data-api-token="3e209109-3e83-411d-b270-ec27a6ef5ff3"></script>
+<!-- Chat -->
+{{-- <script defer src="https://connect.podium.com/widget.js#API_TOKEN=3e209109-3e83-411d-b270-ec27a6ef5ff3" id="podium-widget" data-api-token="3e209109-3e83-411d-b270-ec27a6ef5ff3"></script> --}}
+
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YTBQVYGKW6"></script>
 <script>
