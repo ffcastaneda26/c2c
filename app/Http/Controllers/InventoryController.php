@@ -129,7 +129,6 @@ class InventoryController extends Controller
     // Importar Inventario
 
     public function inventoryimportExportView(){
-        $records = null;
         $records = TemporaryInventory::paginate(10);
         return view('inventory_import_export_view',compact('records'));
 
