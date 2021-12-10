@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\Inventory;
+use App\Models\TemporaryInventory;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -23,7 +24,7 @@ class InventoryImport implements ToModel, WithHeadingRow
 
         if($row['dealer_id'] && $row['vin']){
             try {
-                Inventory::create($row);
+                TemporaryInventory::create($row);
 
             } catch (\Illuminate\Database\QueryException $exception) {
                 $errorInfo = $exception->errorInfo;
