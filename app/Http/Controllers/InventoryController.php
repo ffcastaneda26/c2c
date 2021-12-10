@@ -36,7 +36,6 @@ class InventoryController extends Controller
     /** Index presenta formulario para los filtros */
     public function inventory(Request $request,$dealer_id){
 
-
         if($dealer_id == 'texas-inventory'){
             $this->dealer_id = 'coast2coast';
             $title_dealer ="Texas Inventory";
@@ -66,7 +65,7 @@ class InventoryController extends Controller
         if($request->make || $request->body || $request->year  ){
             $vehicles = $this->read_vehicles($request);
         }else{
-            $vehicles = TemporaryInventory::whereNotNull('stock')
+            $vehicles = Inventory::whereNotNull('stock')
                             ->where('dealer_id',$this->dealer_id)
                             ->orderby('make')
                             ->orderby('year')
