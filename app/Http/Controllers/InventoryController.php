@@ -77,6 +77,7 @@ class InventoryController extends Controller
         $makesList  =  $this->fill_combos('make');
         $yearsList  =  $this->fill_combos('year');
         $bodiesList =  $this->fill_combos('body');
+
         return view('inventory.inventory_page',compact('makesList','yearsList','bodiesList',
                                                   'search_make','search_body','search_year',
                                                   'title_dealer','dealer_id',
@@ -111,7 +112,8 @@ class InventoryController extends Controller
 
     // Llena combos recibiendo el atributo o campo
     private function fill_combos($attribute){
-        $sql = 'SELECT DISTINCT ' . $attribute . ' as attribute,count(*) as total FROM temporary_inventories WHERE ' . $attribute . ' IS NOT NULL AND stock IS NOT NULL GROUP BY '. $attribute . ' ORDER BY ' . $attribute ;
+        $sql = 'SELECT DISTINCT ' . $attribute . ' as attribute,count(*) as total FROM inventories WHERE ' . $attribute . ' IS NOT NULL AND stock IS NOT NULL GROUP BY '. $attribute . ' ORDER BY ' . $attribute ;
+
         $results = DB::select($sql);
         $result_array = array();
 
