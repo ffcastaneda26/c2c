@@ -33,5 +33,7 @@ Route::post('inventory_import', [InventoryController::class, 'inventory_import']
 Route::get('inventory_export', [InventoryController::class, 'inventory_export'])->name('inventory_export');
 Route::get('inventory/{dealer_id}', [InventoryController::class, 'inventory'])->name('texas-inventory');
 Route::get('inventory/show/{vehicle}', [InventoryController::class, 'show'])->name('show_vehicle');
+Route::get('confirm_update_inventory', [InventoryController::class, 'confirm_update_inventory'])->name('confirm_update_inventory');
+
 //Route::post('query_inventory', [InventoryController::class, 'query_inventory'])->name('query_inventory');
 

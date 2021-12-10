@@ -128,23 +128,27 @@ class InventoryController extends Controller
     // Importar Inventario
 
     public function inventoryimportExportView(){
-        return view('inventory_import_export_view');
+        $records = null;
+        $records = TemporaryInventory::paginate(10);
+        return view('inventory_import_export_view',compact('records'));
+
     }
 
     public function inventory_import(){
-
 
         try {
             TemporaryInventory::truncate();
 
             Excel::import(new InventoryImport,request()->file('file'));
 
-            return back()->with('message',__('Inventory has been Imported'));
+            $records = TemporaryInventory::paginate(10);
+            return view('inventory_import_export_view',compact('records'))->with('message',__('Inventory has been Imported'));
+            return back()->with('message',__('Inventory has been Imported'))->compact('records');
+
         } catch (Throwable $e) {
             report($e);
-            return back()->with('error',__('Inventory was not Imported'));
+            return back()->with(['error',__('Inventory was not Imported'),]);
         }
-
 
     }
 
@@ -313,6 +317,43 @@ class InventoryController extends Controller
 
     public function show(TemporaryInventory $vehicle){
         return view('inventory.vehicle_record',compact('vehicle'));
+    }
+
+    /**
+     * 1) Obtiene de que ubicaciones tiene inventario
+     * 2) Recorre el arreglo de ubicaciones y por cada una:
+     *      A) Borra los registros de la localizacion
+     *      B) Selecciona de Temporary_inventories los registros de una ubicación
+     *      B) Recorre los registros obtenidos del inventario temporal x cada uno
+     *          (a) Crea registro en inventories
+     * 3) Al terminar de recorrer todas las ubicaciones hace un TRUNCATE a Temporary_inventories
+     */
+
+    public function confirm_update_inventory(){
+
+        $locations = DB::table('temporary_inventories')->select('dealer_id')->distinct()->get()->toArray();
+
+        if(count($locations) == 2 ){
+            Inventory::truncate();
+            $temporary_inventory_records = TemporaryInventory::all()->toArray();
+            $this->create_inventory_record($temporary_inventory_records);
+        }else{
+            foreach($locations as $location ){
+                Inventory::where('dealer_id',$location->dealer_id)->delete();
+                $temporary_inventory_records = TemporaryInventory::where('dealer_id',$location->dealer_id)->get()->toArray();
+                $this->create_inventory_record($temporary_inventory_records);
+
+            }
+        }
+        TemporaryInventory::truncate();
+        return redirect()->route('inventoryimportExportView');
+    }
+
+
+    private function create_inventory_record(array $temporary_inventory_records){
+        foreach($temporary_inventory_records as $temporary_inventory_record ){
+            Inventory::create($temporary_inventory_record);
+        }
     }
 
 }
