@@ -206,7 +206,7 @@ class InventoryController extends Controller
             // (A) Solo Axo
         if(count($whereyear) && !count($wheremake) && !count($wherebody)){
 
-            return TemporaryInventory::whereNotNull('stock')
+            return Inventory::whereNotNull('stock')
                                 ->wherein('year',$whereyear)
                                 ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
                                 ->orderby('make')
@@ -218,7 +218,7 @@ class InventoryController extends Controller
 
         // (B) Axo y Marca
         if(count($whereyear) && count($wheremake) && !count($wherebody)){
-            return TemporaryInventory::whereNotNull('stock')
+            return Inventory::whereNotNull('stock')
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
                             ->wherein('year',$whereyear)
                             ->wherein('make',$wheremake)
@@ -231,7 +231,7 @@ class InventoryController extends Controller
 
         // (C) Axo - Marca - Tipo
         if(count($whereyear) && count($wheremake) && count($wherebody)){
-            $this->vehicles = TemporaryInventory::whereNotNull('stock')
+            $this->vehicles = Inventory::whereNotNull('stock')
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
                             ->wherein('year',$whereyear)
                             ->wherein('make',$wheremake)
@@ -244,7 +244,7 @@ class InventoryController extends Controller
 
         // (D) Marca
         if(!count($whereyear) && count($wheremake) && !count($wherebody)){
-            return TemporaryInventory::whereNotNull('stock')
+            return Inventory::whereNotNull('stock')
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
                             ->wherein('make',$wheremake)
                             ->orderby('make')
@@ -255,7 +255,7 @@ class InventoryController extends Controller
 
         // (E) Marca y Tipo
         if(!count($whereyear) && count($wheremake) && count($wherebody)){
-            return TemporaryInventory::whereNotNull('stock')
+            return Inventory::whereNotNull('stock')
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
                             ->wherein('make',$wheremake)
                             ->wherein('make',$wherebody)
@@ -267,7 +267,7 @@ class InventoryController extends Controller
 
         // (F) Axo-TIpo
         if(count($whereyear) && !count($wheremake) && count($wherebody)){
-            return TemporaryInventory::whereNotNull('stock')
+            return Inventory::whereNotNull('stock')
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
                             ->wherein('year',$whereyear)
                             ->wherein('make',$wherebody)
@@ -279,7 +279,7 @@ class InventoryController extends Controller
 
         // (G) Solo Tipo
         if(!count($whereyear) && !count($wheremake) && count($wherebody)){
-            return TemporaryInventory::whereNotNull('stock')
+            return Inventory::whereNotNull('stock')
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
                             ->wherein('make',$wherebody)
                             ->orderby('make')
@@ -290,7 +290,7 @@ class InventoryController extends Controller
 
         // (Todos) sin axo-marca-tipo
         if(!count($whereyear) && !count($wheremake) && !count($wherebody)){
-            return TemporaryInventory::whereNotNull('stock')
+            return Inventory::whereNotNull('stock')
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
                                 ->orderby('make')
                                 ->orderby('year')
