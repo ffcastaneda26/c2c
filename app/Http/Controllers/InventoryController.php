@@ -314,7 +314,7 @@ class InventoryController extends Controller
 
     /** Lee y regresa el vehículo solicitado */
 
-    public function show(TemporaryInventory $vehicle){
+    public function show(Inventory $vehicle){
         return view('inventory.vehicle_record',compact('vehicle'));
     }
 
