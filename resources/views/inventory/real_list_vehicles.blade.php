@@ -17,7 +17,7 @@
             </div>
 
             <div class="listing-details">
-                <a class="vehicle-name" href="https://ctcautogroup.com/cars/2016-ford-expedition-1692/">
+                <a class="vehicle-name" href="{{ url('inventory/show/' . $vehicle->id) }}">
                         @if($vehicle->year || $vehicle->make || $vehicle->model )
                            {{  $vehicle->year }} {{ $vehicle->make  }} {{  $vehicle->model   }}
                         @else

@@ -11,6 +11,7 @@ use App\Imports\InventoryImport;
 use App\Models\TemporaryInventory;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Console\Migrations\RollbackCommand;
 
 class InventoryController extends Controller
@@ -36,10 +37,14 @@ class InventoryController extends Controller
     /** Index presenta formulario para los filtros */
     public function inventory(Request $request,$dealer_id){
 
+        session(['inventory_url'  =>  url()->current()]);
+
         if($dealer_id == 'texas-inventory'){
             $this->dealer_id = 'coast2coast';
             $title_dealer ="Texas Inventory";
         }
+
+
 
         if($dealer_id == 'oklahoma-inventory'){
             $this->dealer_id = 'crossroads';
@@ -315,7 +320,8 @@ class InventoryController extends Controller
 
     /** Lee y regresa el vehículo solicitado */
 
-    public function show(Inventory $vehicle){
+    public function show(Request $request,Inventory $vehicle){
+
         return view('inventory.vehicle_record',compact('vehicle'));
     }
 
