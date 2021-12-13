@@ -37,7 +37,7 @@ class InventoryController extends Controller
     /** Index presenta formulario para los filtros */
     public function inventory(Request $request,$dealer_id){
 
-        session(['inventory_url'  =>  url()->current()]);
+        session(['inventory_url'  =>  url()->full()]);
 
         if($dealer_id == 'texas-inventory'){
             $this->dealer_id = 'coast2coast';
@@ -362,7 +362,4 @@ class InventoryController extends Controller
         }
     }
 
-    public function return_back() {
-        return redirect()->back();
-    }
 }
