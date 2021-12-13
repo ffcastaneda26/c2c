@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\InventoryController;
 use App\Http\Livewire\Inventory;
+use App\Http\Livewire\Promotions;
 use App\Imports\InventoriesImport;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InventoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('storage-link',function(){
+    if(Auth::user()){
+        if(file_exists(public_path('storage'))){
+            return public_path('storage') . 'Ya esiste';
+        }
+        Artisan::call('storage:link');
+    }else{
+        return 'Sorry You Not Authorized To This Command';
+    }
+})->middleware('auth');
+
+Route::get('return-back', function() {
+    return back()->withInput();
+});
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
@@ -28,6 +44,7 @@ Route::get('importExportView', [InventoryController::class, 'importExportView'])
 Route::get('export', [InventoryController::class, 'export'])->name('export');
 Route::post('import', [InventoryController::class, 'import'])->name('import');
 
+Route::get('promotions',Promotions::class)->name('promotions');
 Route::get('inventory_import', [InventoryController::class, 'inventoryimportExportView'])->name('inventoryimportExportView');
 Route::post('inventory_import', [InventoryController::class, 'inventory_import'])->name('inventory_import');
 Route::get('inventory_export', [InventoryController::class, 'inventory_export'])->name('inventory_export');

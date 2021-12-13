@@ -36,6 +36,15 @@
     "Dealer": "Localización",
     "Model": "Modelo",
     "Confirm Update Inventory": "Confirmar Actualización de Inventario",
-    "Image": "Imagen"
-
+    "Image": "Imagen",
+    "Manage Promotions":"Gestion de Promociones",
+    "Create Promotion":"Crear Promoción",
+    "Name":"Nombre",
+    "Description":"Descripción",
+    "Actions":"Acciones",
+    "Edit":"Editar",
+    "Delete":"Eliminar",
+    "Cancel":"Cancelar",
+    "Save":"Guardar",
+    "Name:":"Nombre:"
 }
