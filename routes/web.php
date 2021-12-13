@@ -32,9 +32,7 @@ Route::get('storage-link',function(){
     }
 })->middleware('auth');
 
-Route::get('return-back', function() {
-    return back()->withInput();
-});
+Route::get('return-back', [InventoryController::class, 'return_back'])->name('return-back');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

@@ -13,9 +13,12 @@
                 &nbsp;|&nbsp;  {{ __('Stock Code not available') }}
             @endif
         </p>
-        <button class="absolute right-20 top-0 flex items-center justify-center shadow-lg rounded-lg px-4 py-2 text-2xl font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-md active:bg-green-500 focus:outline-none focus:shadow-outline-green hover:bg-green-500">
-            {{__('Return')}}
-        </button>
+        <form action="{{route('return-back')}}">
+            @csrf
+            <button class="absolute right-20 top-0 flex items-center justify-center shadow-lg rounded-lg px-4 py-2 text-2xl font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-md active:bg-green-500 focus:outline-none focus:shadow-outline-green hover:bg-green-500">
+                {{__('Return')}}
+            </button>
+        </form>
     </div>
 </div>
 

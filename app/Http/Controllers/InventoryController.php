@@ -356,4 +356,7 @@ class InventoryController extends Controller
         }
     }
 
+    public function return_back() {
+        return redirect()->back();
+    }
 }
