@@ -30,7 +30,9 @@
             <ul class="slides">
                 @if($vehicle->images)
                     @foreach ( explode(",", $vehicle->images) as $image_url)
-                        <li><img src="{{ $image_url }}"/></li>
+                        @if(!$loop->first)
+                            <li><img src="{{ $image_url }}"/></li>
+                        @endif
                     @endforeach
                 @endif
             </ul>
