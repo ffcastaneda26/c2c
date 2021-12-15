@@ -51,6 +51,9 @@
     "Go Back": "Regresar",
     "Email": "Correo Electrónico",
     "Password": "Contraseña",
-    "Log in": "Ingresar"
+    "Log in": "Ingresar",
+    "Log Out": "Cerrar Sesión",
+    "Profile": "Mi Perfil",
+    "Manage Account": "Gestión de Cuenta"
 
 }
