@@ -47,5 +47,10 @@
     "Delete":"Eliminar",
     "Cancel":"Cancelar",
     "Save":"Guardar",
-    "Name:":"Nombre:"
+    "Name:":"Nombre:",
+    "Go Back": "Regresar",
+    "Email": "Correo Electrónico",
+    "Password": "Contraseña",
+    "Log in": "Ingresar"
+
 }
