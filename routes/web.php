@@ -4,6 +4,7 @@ use App\Http\Livewire\Inventory;
 use App\Http\Livewire\Promotions;
 use App\Imports\InventoriesImport;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FtpController;
 use App\Http\Controllers\InventoryController;
 
 /*
@@ -48,6 +49,7 @@ Route::get('inventory_export', [InventoryController::class, 'inventory_export'])
 Route::get('inventory/{dealer_id}', [InventoryController::class, 'inventory'])->name('texas-inventory');
 Route::get('inventory/show/{vehicle}', [InventoryController::class, 'show'])->name('show_vehicle');
 Route::get('confirm_update_inventory', [InventoryController::class, 'confirm_update_inventory'])->name('confirm_update_inventory');
+Route::get('inventory_download_file', [FtpController::class, 'ftpDownloadFile'])->name('ftpDownloadFile');
 
 //Route::post('query_inventory', [InventoryController::class, 'query_inventory'])->name('query_inventory');
 
