@@ -10,7 +10,7 @@
             @if($vehicle->stock)
                 &nbsp;|&nbsp; STOCK {{ $vehicle->stock }}
             @else
-                &nbsp;|&nbsp;  {{ __('Stock Code not available') }}`
+                &nbsp;|&nbsp;  {{ __('Stock Code not available') }}
             @endif
         </p>
 
@@ -22,12 +22,11 @@
         @if( $vehicle->dealer_id == 'crossroads')
             <a href="/inventory/oklahoma-inventory">
         @endif --}}
-
-        <a href=" {{ session('inventory_url') }}">
+        {{-- <a href="<?=$_SERVER["HTTP_REFERER"]?>">
             <button style="background-color:#59B44B;" class="go_back absolute right-20 top-0 flex items-center justify-center shadow-lg  px-4 py-2 text-2xl font-medium leading-5 text-white transition-colors duration-150 border border-transparent rounded-md active:bg-green-500 focus:outline-none focus:shadow-outline-green hover:bg-green-500">
                 {{__('Go Back')}}
             </button>
-        </a>
+        </a> --}}
 
     </div>
 </div>
@@ -48,6 +47,9 @@
                     @foreach ( explode(",", $vehicle->images) as $image_url)
                         @if(!$loop->first)
                             <li><img src="{{ $image_url }}"/></li>
+                        @endif
+                        @if($loop->last)
+                            <li><img src="{{ asset('images/promotion.jpg') }}"/></li>
                         @endif
                     @endforeach
                 @endif
