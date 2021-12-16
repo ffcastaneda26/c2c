@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Throwable;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\TryCatch;
 use App\Http\Controllers\ftpConnectionController;
 
 class FtpController extends Controller
@@ -20,13 +22,15 @@ class FtpController extends Controller
 
         if($this->ftpconnection->ftpLogin()){
             ftp_pasv($this->ftpconnection->ftp, TRUE);
-            $files = ["dealermade_coast2coast.csv","dealermade_crossroads.csv"];
-            foreach($files as $file){
-                if(!$this->get_file($file,$file)){
-                    return "Ha habido error al intentar descar archivo $file";
-                }else{
-                    $return = true;
+            $files = ["dealermade_coast2coastx.csv","dealermade_crossroads.csv"];
+            try {
+                foreach($files as $file){
+                    if(!$this->get_file($file,$file)){
+                        return "Ha habido error al intentar descar archivo $file";
+                    }
                 }
+            } catch (Throwable $e) {
+                return __('Some files could not have been downloaded');
             }
         }
     }
