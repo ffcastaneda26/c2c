@@ -4,7 +4,8 @@ namespace App\Http\Livewire;
 /**+--------------------------------------------------------------------+
  * | Fecha      | Autor |       Observaciones                           |
  * +------------+-------+-----------------------------------------------+
- * | 13-dic-21  | MANN   | Creacion de Componente Promociones           |
+ * | 13-dic-21  | MANN  | Creacion de Componente Promociones            |
+ * | 16-dic-21  | FCO   | Mover las vistas a carpeta promotions         |
  * +------------+---------------------------+---------------------------+
  */
 
@@ -29,18 +30,13 @@ class Promotions extends Component {
     // Revisa que tenga acceso
     public function mount()
     {
-        /* $this->manage_title = "Manage Promotions";
-        $this->create_button_label = "Create Promotion";
-        $this->search_label = "Promotion";
-        $this->view_form    = 'livewire.vips.form';
-        $this->view_table   = 'livewire.vips.table';
-        $this->view_list    = 'livewire.vips.list'; */
+
     }
 
 
 	public function render() {
         $searchTerm = '%'.$this->search.'%';
-        return view('livewire.index', [
+        return view('livewire.promotions.index', [
             'records' => Promotion::where('name','like', $searchTerm)->paginate($this->pagination)
         ]);
 	}
@@ -48,9 +44,7 @@ class Promotions extends Component {
 
 	private function resetInputFields() {
         $this->record_id = Null;
-        $this->name = Null;
-		$this->description = Null;
-        $this->image = Null;
+        $this->reset('name','description','image');
 	}
 
 
@@ -77,7 +71,7 @@ class Promotions extends Component {
         $this->record_id ? 'Promotion Updated Successfully.' : 'Promotion Created Successfully.');
 
     $this->closeModal();
-    $this->resetInputFields();
+        $this->resetInputFields();
 	}
 
 

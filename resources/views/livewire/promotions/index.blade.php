@@ -17,7 +17,7 @@
                     class="w-200 shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             >
             @if($isOpen)
-                @include('livewire.create')
+                @include('livewire.promotions.create')
             @endif
 
             <table class="table-fixed w-full">
