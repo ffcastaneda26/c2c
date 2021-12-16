@@ -48,10 +48,12 @@
                         @if(!$loop->first)
                             <li><img src="{{ $image_url }}"/></li>
                         @endif
-                        @if($loop->last)
-                            <li><img src="{{ asset('images/promotion.jpg') }}"/></li>
-                        @endif
                     @endforeach
+                    @if($promotions->count())
+                        @foreach ($promotions as $promotion )
+                            <li><img src="{{ Storage::url($promotion->image) }}"/></li>
+                        @endforeach
+                    @endif
                 @endif
             </ul>
         </div>

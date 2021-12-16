@@ -8,6 +8,7 @@ use App\Exports\UsersExport;
 use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use App\Imports\InventoryImport;
+use App\Models\Promotion;
 use App\Models\TemporaryInventory;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
@@ -321,8 +322,8 @@ class InventoryController extends Controller
     /** Lee y regresa el vehículo solicitado */
 
     public function show(Request $request,Inventory $vehicle){
-
-        return view('inventory.vehicle_record',compact('vehicle'));
+        $promotions = Promotion::all();
+        return view('inventory.vehicle_record',compact('vehicle','promotions'));
     }
 
     /**
