@@ -8,3 +8,7 @@ Route::get('ftp_inventory',function(){
     $ftpinventory->inventory_ftp_inventory();
     return 'Buenos dias....  ' . now();
 });
+
+Route::get('registra_log',function(){
+    logger("Ejecutado a las " . now());
+});

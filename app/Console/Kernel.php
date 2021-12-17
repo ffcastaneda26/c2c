@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Http\Controllers\FtpController;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -24,7 +25,14 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->call(function(){
+            logger("Comienza actualizar Inventario por FTP a las  " . now());
+            $ftpinventory = new FtpController;
+            $ftpinventory->inventory_ftp_inventory();
+
+        })->everyTenMinutes();
+        // ->dailyAt('13:00');
+
     }
 
     /**

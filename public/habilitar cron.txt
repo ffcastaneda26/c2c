@@ -1,0 +1,11 @@
+ # Ejecutar CRON en local
+ 1.- configurar el tiempo:
+   (a) crontab -e
+   (b) * * * * * cd /home/federico/Sites/c2c && php artisan schedule:run >> /dev/null 2>&1
+2.- En laravel archivo App/Console/Kernel.php
+    (a) Método schedule dejar lo que se desea hacer por ejemplo escribir un mensaje en /logs/laravel.log
+        $schedule->call(function(){
+            logger("Nueva ejecucion a las  " . now());
+        })->everyMinute();
+3.- Iniciar el CRON en la consola
+    sudo service cron start
