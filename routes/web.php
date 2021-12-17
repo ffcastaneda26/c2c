@@ -49,4 +49,4 @@ Route::get('inventory_export', [InventoryController::class, 'inventory_export'])
 Route::get('inventory/{dealer_id}', [InventoryController::class, 'inventory'])->name('texas-inventory');
 Route::get('inventory/show/{vehicle}', [InventoryController::class, 'show'])->name('show_vehicle');
 Route::get('confirm_update_inventory', [InventoryController::class, 'confirm_update_inventory'])->name('confirm_update_inventory');
-Route::get('inventory_download_files', [FtpController::class, 'ftpDownloadFiles'])->name('ftpDownloadFiles');
+Route::get('inventory_ftp_inventory', [FtpController::class, 'inventory_ftp_inventory'])->name('inventory_ftp_inventory');

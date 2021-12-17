@@ -24,8 +24,7 @@ class FtpController extends Controller
     }
 
    // Request $request,$dealer_id
-    public function ftpDownloadFiles(){
-
+    public function inventory_ftp_inventory(){
         if($this->ftpconnection->ftpLogin()){
             ftp_pasv($this->ftpconnection->ftp, TRUE);
             TemporaryInventory::truncate();
@@ -38,6 +37,7 @@ class FtpController extends Controller
                 }
                 $this->copy_temporal_to_definitive_inventory();
                 TemporaryInventory::truncate();
+                $this->ftpconnection->ftp_close();
             } catch (Throwable $e) {
                 dd($e);
                 return __('Some files could not have been downloaded');

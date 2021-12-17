@@ -10,11 +10,16 @@
                     </a>
                 </div>
 
-
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
+                    </x-jet-nav-link>
+                </div>
+@if(Auth::user()->email == 'admin@admin.com')
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('inventory_ftp_inventory') }}" :active="request()->routeIs('inventory_ftp_inventory')">
+                        {{ __('FTP Update Inventory') }}
                     </x-jet-nav-link>
                 </div>
 
@@ -23,6 +28,7 @@
                         {{ __('Import Inventory') }}
                     </x-jet-nav-link>
                 </div>
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('promotions') }}" :active="request()->routeIs('promotions')">
                         {{ __('Promotions') }}
@@ -41,7 +47,7 @@
                     </x-jet-nav-link>
                 </div>
             </div>
-
+@endif
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
