@@ -50,3 +50,6 @@ Route::get('inventory/{dealer_id}', [InventoryController::class, 'inventory'])->
 Route::get('inventory/show/{vehicle}', [InventoryController::class, 'show'])->name('show_vehicle');
 Route::get('confirm_update_inventory', [InventoryController::class, 'confirm_update_inventory'])->name('confirm_update_inventory');
 Route::get('inventory_ftp_inventory', [FtpController::class, 'inventory_ftp_inventory'])->name('inventory_ftp_inventory');
+
+/** Rutas de prueba */
+require 'pruebas.php';
