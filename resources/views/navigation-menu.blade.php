@@ -42,10 +42,20 @@
                                                 {{ __('Texas Inventory') . " Spanish"}}
                                             </x-jet-nav-link>
                                         </div>
+                                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                            <x-jet-nav-link href="{{ url('inventory/en/texas-inventory') }}" :active="request()->routeIs('inventory')">
+                                                {{ __('Texas Inventory') }}
+                                            </x-jet-nav-link>
+                                        </div>
                                     @else
                                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                             <x-jet-nav-link href="{{ url('inventory/en/texas-inventory') }}" :active="request()->routeIs('inventory')">
                                                 {{ __('Texas Inventory') . " Inglés"}}
+                                            </x-jet-nav-link>
+                                        </div>
+                                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                            <x-jet-nav-link href="{{ url('inventory/es/texas-inventory') }}" :active="request()->routeIs('inventory')">
+                                                {{ __('Texas Inventory')}}
                                             </x-jet-nav-link>
                                         </div>
                                     @endif
@@ -55,10 +65,21 @@
                                                 {{ __('Oklahoma Inventory') . " Spanish"}}
                                             </x-jet-nav-link>
                                         </div>
+                                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                            <x-jet-nav-link href="{{ url('inventory/en/oklahoma-inventory') }}" :active="request()->routeIs('inventory')">
+                                                {{ __('Oklahoma Inventory')}}
+                                            </x-jet-nav-link>
+                                        </div>
                                     @else
                                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                             <x-jet-nav-link href="{{ url('inventory/en/oklahoma-inventory') }}" :active="request()->routeIs('inventory')">
                                                 {{ __('Oklahoma Inventory') . " Inglés"}}
+                                            </x-jet-nav-link>
+                                        </div>
+
+                                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                            <x-jet-nav-link href="{{ url('inventory/es/oklahoma-inventory') }}" :active="request()->routeIs('inventory')">
+                                                {{ __('Oklahoma Inventory')}}
                                             </x-jet-nav-link>
                                         </div>
                                     @endif
