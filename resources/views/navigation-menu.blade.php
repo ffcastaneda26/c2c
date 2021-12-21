@@ -16,38 +16,62 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                 </div>
-@if(Auth::user()->email == 'admin@admin.com')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('inventory_ftp_inventory') }}" :active="request()->routeIs('inventory_ftp_inventory')">
-                        {{ __('FTP Update Inventory') }}
-                    </x-jet-nav-link>
-                </div>
+                @auth
+                    @if(Auth::user()->email == 'admin@admin.com')
+                                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                        <x-jet-nav-link href="{{ route('inventory_ftp_inventory') }}" :active="request()->routeIs('inventory_ftp_inventory')">
+                                            {{ __('FTP Update Inventory') }}
+                                        </x-jet-nav-link>
+                                    </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('inventoryimportExportView') }}" :active="request()->routeIs('inventoryimportExportView')">
-                        {{ __('Import Inventory') }}
-                    </x-jet-nav-link>
-                </div>
+                                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                        <x-jet-nav-link href="{{ route('inventoryimportExportView') }}" :active="request()->routeIs('inventoryimportExportView')">
+                                            {{ __('Import Inventory') }}
+                                        </x-jet-nav-link>
+                                    </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('promotions') }}" :active="request()->routeIs('promotions')">
-                        {{ __('Promotions') }}
-                    </x-jet-nav-link>
-                </div>
+                                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                        <x-jet-nav-link href="{{ route('promotions') }}" :active="request()->routeIs('promotions')">
+                                            {{ __('Promotions') }}
+                                        </x-jet-nav-link>
+                                    </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ url('inventory/texas-inventory') }}" :active="request()->routeIs('inventory')">
-                        {{ __('Texas Inventory') }}
-                    </x-jet-nav-link>
-                </div>
+                                    @if (App::isLocale('en'))
+                                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                            <x-jet-nav-link href="{{ url('inventory/es/texas-inventory') }}" :active="request()->routeIs('inventory')">
+                                                {{ __('Texas Inventory') . " Spanish"}}
+                                            </x-jet-nav-link>
+                                        </div>
+                                    @else
+                                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                            <x-jet-nav-link href="{{ url('inventory/en/texas-inventory') }}" :active="request()->routeIs('inventory')">
+                                                {{ __('Texas Inventory') . " Inglés"}}
+                                            </x-jet-nav-link>
+                                        </div>
+                                    @endif
+                                    @if (App::isLocale('en'))
+                                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                            <x-jet-nav-link href="{{ url('inventory/es/oklahoma-inventory') }}" :active="request()->routeIs('inventory')">
+                                                {{ __('Oklahoma Inventory') . " Spanish"}}
+                                            </x-jet-nav-link>
+                                        </div>
+                                    @else
+                                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                            <x-jet-nav-link href="{{ url('inventory/en/oklahoma-inventory') }}" :active="request()->routeIs('inventory')">
+                                                {{ __('Oklahoma Inventory') . " Inglés"}}
+                                            </x-jet-nav-link>
+                                        </div>
+                                    @endif
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ url('inventory/oklahoma-inventory') }}" :active="request()->routeIs('inventory')">
-                        {{ __('Oklahoma Inventory') }}
-                    </x-jet-nav-link>
-                </div>
-            </div>
-@endif
+
+                                    {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                        <x-jet-nav-link href="{{ url('inventory/oklahoma-inventory') }}" :active="request()->routeIs('inventory')">
+                                            {{ __('Oklahoma Inventory') }}
+                                        </x-jet-nav-link>
+                                    </div> --}}
+                                </div>
+                    @endif
+                @endauth
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())

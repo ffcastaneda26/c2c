@@ -26,12 +26,15 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function(){
-            logger("Comienza actualizar Inventario por FTP a las  " . now());
-            $ftpinventory = new FtpController;
-            $ftpinventory->inventory_ftp_inventory();
+            logger("Solo para " . now() . " Cada dos minutos");
+       })->everyTwoMinutes();;
 
-        })->everyTenMinutes();
-        // ->dailyAt('13:00');
+        // $schedule->call(function(){
+        //     logger("Actualiza Última versión  con carga " . now() . " Cada 4:50 hrs");
+        //     $ftpinventory = new FtpController;
+        //     $ftpinventory->inventory_ftp_inventory();
+        // })->dailyAt('05:00');
+
 
     }
 

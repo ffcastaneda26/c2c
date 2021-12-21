@@ -9,3 +9,9 @@
         })->everyMinute();
 3.- Iniciar el CRON en la consola
     sudo service cron start
+
+/usr/local/bin/php /home2/teamkodd/public_html/c2c/to/cron/script
+
+ php artisan schedule:run >> /dev/null 2>&1
+
+ cd /home2/teamkodd/public_html/c2c && php artisan schedule:run >> /dev/null 2>&1

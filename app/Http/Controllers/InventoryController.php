@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Throwable;
 use App\Models\Inventory;
+use App\Models\Promotion;
 use App\Exports\UsersExport;
 use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use App\Imports\InventoryImport;
-use App\Models\Promotion;
 use App\Models\TemporaryInventory;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Console\Migrations\RollbackCommand;
@@ -36,8 +37,10 @@ class InventoryController extends Controller
     }
 
     /** Index presenta formulario para los filtros */
-    public function inventory(Request $request,$dealer_id){
+    public function inventory(Request $request,$language,$dealer_id){
 
+        session()->put('locale', $language);
+        App::setLocale(session()->get('locale'));
         session(['inventory_url'  =>  url()->full()]);
 
         if($dealer_id == 'texas-inventory'){

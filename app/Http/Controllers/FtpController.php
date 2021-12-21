@@ -37,10 +37,11 @@ class FtpController extends Controller
                 }
                 $this->copy_temporal_to_definitive_inventory();
                 TemporaryInventory::truncate();
-                $this->ftpconnection->ftp_close();
+               // $this->ftpconnection->ftp_close();
             } catch (Throwable $e) {
-                dd($e);
-                return __('Some files could not have been downloaded');
+                logger($e);
+                logger('Some files could not have been downloaded');
+                // return __('Some files could not have been downloaded');
             }
         }
     }
