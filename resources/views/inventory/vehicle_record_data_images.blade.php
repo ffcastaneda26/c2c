@@ -51,7 +51,11 @@
                     @endforeach
                     @if($promotions->count())
                         @foreach ($promotions as $promotion )
+                        @if(App::isLocale('es'))
                             <li><img src="{{ Storage::url($promotion->image) }}"/></li>
+                        @else
+                            <li><img src="{{ Storage::url($promotion->image_en) }}"/></li>
+                        @endif
                         @endforeach
                     @endif
                 @endif

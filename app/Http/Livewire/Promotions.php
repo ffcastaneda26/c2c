@@ -20,7 +20,7 @@ class Promotions extends Component {
     use WithPagination;
     use WithFileUploads;
 
-    public $name,$image, $description, $imagex;
+    public $name, $image, $description, $imagex, $image_en, $image_enx;
     public $search;
     public $record_id;
     public $searchTerm;
@@ -61,10 +61,18 @@ class Promotions extends Component {
                 $fileImage = $this->image;
             }
 
+            if ($this->image_enx) {
+                $this->image_en = $this->image_enx;
+                $fileImage_en = $this->image_en->Store('public/images/promotions');
+            } else {
+                $fileImage_en = $this->image_en;
+            }
+
         Promotion::updateOrCreate(['id' => $this->record_id], [
             'name'   => $this->name,
             'description'   => $this->description,
             'image'      => $fileImage,
+            'image_en'  => $fileImage_en,
 		]);
 
         session()->flash('message',
@@ -82,6 +90,7 @@ class Promotions extends Component {
         $this->name = $record->name;
 		$this->description = $record->description;
         $this->image = $record->image;
+        $this->image_en = $record->image_en;
 		$this->openModal();
 	}
 

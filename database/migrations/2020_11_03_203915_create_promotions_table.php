@@ -18,6 +18,7 @@ class CreatePromotionsTable extends Migration
             $table->string('name',30);
             $table->string('description',191);
             $table->string('image', 191)->nullable();
+            $table->string('image_en', 191)->nullable();
             $table->timestamps();
         });
     }

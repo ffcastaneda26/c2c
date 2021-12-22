@@ -26,6 +26,7 @@
                         <th class="px-4 py-2"> {{__('Name')}}</th>
                         <th class="px-4 py-2"> {{__('Description')}}</th>
                         <th class="px-4 py-2"> {{__('Image')}}</th>
+                        <th class="px-4 py-2"> {{__('Image English')}}</th>
                         <th colspan="2" class="px-4 py-2 text-center">{{__('Actions')}}</th>
                     </tr>
                 </thead>
@@ -37,6 +38,9 @@
                         <td class="border px-4 py-2 w-52">{{ $record->description }}</td>
                         <td class="border px-2 py-1 w-20">
                             <img class="h-12 w-12 rounded-full object-cover" src="{{Storage::url($record->image)}}" alt="logo" />
+                        </td>
+                        <td class="border px-2 py-1 w-20">
+                            <img class="h-12 w-12 rounded-full object-cover" src="{{Storage::url($record->image_en)}}" alt="logo" />
                         </td>
                         <td colspan="2" class="border px-4 py-2 text-center">
                         <button wire:click="edit({{ $record->id }})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">

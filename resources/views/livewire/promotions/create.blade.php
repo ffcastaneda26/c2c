@@ -32,6 +32,17 @@
                             @endif
                             @error('imagex') <span class="text-red-700 text-2xl">{{'*'}}</span>@enderror
                         </div>
+
+                        <div class="mb-4">
+                            <label  class="inline text-sm  mb-2">{{__("Image English")}}:</label>
+                            <input type="file" wire:model.lazy="image_enx" id="selecImage" accept="photo/*" class="rounded-lg text-sm">
+                            @if($image_en)
+                                <img class="h-6 w-6 rounded-full object-cover" src="{{Storage::url($image_en)}}" />
+                            @else
+                                <img id="imagenPrev" class="h-6 w-6 rounded-full object-cover inline">
+                            @endif
+                            @error('image_enx') <span class="text-red-700 text-2xl">{{'*'}}</span>@enderror
+                        </div>
                 </div>
 
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
@@ -51,3 +62,76 @@
         </div>
     </div>
 </div>
+<script>
+
+    // Obtener referencia al input y a la imagen
+    const $selecPhoto = document.querySelector("#selecPhoto"),
+    //Imagenes
+    
+        $imagenPhoto = document.querySelector("#imagenPhoto");
+      // Escuchar cuando cambie
+      if ($selecPhoto && $imagenPhoto) {
+        $selecPhoto.addEventListener("change", () => {
+          // Los archivos seleccionados, pueden ser muchos o uno
+          const archivos = $selecPhoto.files;
+          // Si no hay archivos salimos de la función y quitamos la imagen
+          if (!archivos || !archivos.length) {
+            $imagenPhoto.src = "";
+            return;
+          }
+          // Ahora tomamos el primer archivo, el cual vamos a previsualizar
+          const primerArchivo = archivos[0];
+          // Lo convertimos a un objeto de tipo objectURL
+          const objectURL = URL.createObjectURL(primerArchivo);
+          // Y a la fuente de la imagen le ponemos el objectURL
+          $imagenPhoto.src = objectURL;
+        });
+    }
+    
+    // Obtener referencia al input y a la imagen
+      const $selecImage = document.querySelector("#selecImage"),
+      //Imagenes 2
+      $imagenPrev = document.querySelector("#imagenPrev");
+      // Escuchar cuando cambie
+      if ($selecImage && $imagenPrev) {
+        $selecImage.addEventListener("change", () => {
+          // Los archivos seleccionados, pueden ser muchos o uno
+          const archivos = $selecImage.files;
+          // Si no hay archivos salimos de la función y quitamos la imagen
+          if (!archivos || !archivos.length) {
+            $imagenPrev.src = "";
+            return;
+          }
+          // Ahora tomamos el primer archivo, el cual vamos a previsualizar
+          const primerArchivo = archivos[0];
+          // Lo convertimos a un objeto de tipo objectURL
+          const objectURL = URL.createObjectURL(primerArchivo);
+          // Y a la fuente de la imagen le ponemos el objectURL
+          $imagenPrev.src = objectURL;
+        });
+    }
+    
+    // Obtener referencia al input y a la imagen
+      const $selecImage1 = document.querySelector("#selecImage1"),
+    //Imagenes 3
+    
+        $imagenPrev1 = document.querySelector("#imagenPrev1");
+      // Escuchar cuando cambie
+      if ($selecImage1 && $imagenPrev1) {
+        $selecImage1.addEventListener("change", () => {
+          // Los archivos seleccionados, pueden ser muchos o uno
+          const archivos = $selecImage1.files;
+          // Si no hay archivos salimos de la función y quitamos la imagen
+          if (!archivos || !archivos.length) {
+            $imagenPrev1.src = "";
+            return;
+          }
+          // Ahora tomamos el primer archivo, el cual vamos a previsualizar
+          const primerArchivo = archivos[0];
+          // Lo convertimos a un objeto de tipo objectURL
+          const objectURL = URL.createObjectURL(primerArchivo);
+          // Y a la fuente de la imagen le ponemos el objectURL
+          $imagenPrev1.src = objectURL;
+        });
+    }
+    </script>
