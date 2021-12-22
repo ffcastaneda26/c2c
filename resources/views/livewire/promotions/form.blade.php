@@ -34,15 +34,19 @@
                         </div>
 
                         <div class="mb-4">
-                            <label  class="inline text-sm  mb-2">{{__("Image English")}}:</label>
-                            <input type="file" wire:model.lazy="image_enx" id="selecImage" accept="photo/*" class="rounded-lg text-sm">
-                            @if($image_en)
-                                <img class="h-6 w-6 rounded-full object-cover" src="{{Storage::url($image_en)}}" />
-                            @else
-                                <img id="imagenPrev" class="h-6 w-6 rounded-full object-cover inline">
-                            @endif
-                            @error('image_enx') <span class="text-red-700 text-2xl">{{'*'}}</span>@enderror
+
+                            <label for="exampleFormControlInput1" class="block text-gray-700 text-sm font-bold mb-2">{{__('Language')}}</label>
+                            <span class="ml-25">
+                                <select wire:model="language" class="ml-50">
+                                    <option value="" selected disabled>{{ __('Choose') }}</option>
+                                    <option value="es">{{ __('Spanish') }}</option>
+                                    <option value="en">{{ __('English') }}</option>
+                                </select>
+                            </span>
+                            @error('language') <span class="text-theme-15">{{ $message }}</span> @enderror
                         </div>
+
+
                 </div>
 
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
@@ -67,7 +71,7 @@
     // Obtener referencia al input y a la imagen
     const $selecPhoto = document.querySelector("#selecPhoto"),
     //Imagenes
-    
+
         $imagenPhoto = document.querySelector("#imagenPhoto");
       // Escuchar cuando cambie
       if ($selecPhoto && $imagenPhoto) {
@@ -87,7 +91,7 @@
           $imagenPhoto.src = objectURL;
         });
     }
-    
+
     // Obtener referencia al input y a la imagen
       const $selecImage = document.querySelector("#selecImage"),
       //Imagenes 2
@@ -110,11 +114,11 @@
           $imagenPrev.src = objectURL;
         });
     }
-    
+
     // Obtener referencia al input y a la imagen
       const $selecImage1 = document.querySelector("#selecImage1"),
     //Imagenes 3
-    
+
         $imagenPrev1 = document.querySelector("#imagenPrev1");
       // Escuchar cuando cambie
       if ($selecImage1 && $imagenPrev1) {

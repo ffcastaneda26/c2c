@@ -15,11 +15,10 @@ class CreatePromotionsTable extends Migration
     {
         Schema::create('promotions', function (Blueprint $table) {
             $table->id();
-            $table->string('name',30);
+            $table->string('name',50);
             $table->string('description',191);
             $table->string('image', 191)->nullable();
-            $table->string('image_en', 191)->nullable();
-            $table->timestamps();
+            $table->enum('language', ['es', 'en']);
         });
     }
 

@@ -325,7 +325,7 @@ class InventoryController extends Controller
     /** Lee y regresa el vehículo solicitado */
 
     public function show(Request $request,Inventory $vehicle){
-        $promotions = Promotion::all();
+        $promotions = Promotion::language(App::currentLocale())->get();
         return view('inventory.vehicle_record',compact('vehicle','promotions'));
     }
 

@@ -55,6 +55,14 @@
     "Log Out": "Cerrar Sesión",
     "Profile": "Mi Perfil",
     "Manage Account": "Gestión de Cuenta",
-    "FTP Update Inventory": "Actualiza Inventario FTP"
+    "FTP Update Inventory": "Actualiza Inventario FTP",
+    "Name lenght must be max of 50 characteres": "Nombre debe tener máxio 50 carácteres",
+    "Name of file exists in the ssystem": "El nombre del archivo ya existe en el sistema",
+    "Language must be [es] or [en]": "El idioma debe ser [es] or [en] ",
+    "Language": "Idioma",
+    "Spanish": "Español",
+    "English": "Inglés",
+    "Promotion Deleted Successfully.":"Promoción eliminada satisfactoriamente",
+    "Choose":"Elegir"
 
 }

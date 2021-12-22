@@ -6,6 +6,7 @@ namespace App\Http\Livewire;
  * +------------+-------+-----------------------------------------------+
  * | 13-dic-21  | MANN  | Creacion de Componente Promociones            |
  * | 16-dic-21  | FCO   | Mover las vistas a carpeta promotions         |
+ * | 22-dic-21  | FCO   | Agregar idioma manejo de imagen en promotions |
  * +------------+---------------------------+---------------------------+
  */
 
@@ -14,13 +15,13 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use App\Models\Promotion;
-
+use Illuminate\Support\Facades\App;
 
 class Promotions extends Component {
     use WithPagination;
     use WithFileUploads;
 
-    public $name, $image, $description, $imagex, $image_en, $image_enx;
+    public $name, $image, $description, $imagex, $language;
     public $search;
     public $record_id;
     public $searchTerm;
@@ -44,35 +45,31 @@ class Promotions extends Component {
 
 	private function resetInputFields() {
         $this->record_id = Null;
-        $this->reset('name','description','image');
+        $this->reset('name','description','image','language');
 	}
 
 
 	public function store() {
-		$this->validate([
-            'name' => 'required|min:3|max:30',
-            'description' => 'required|min:3|max:200',
-            ]);
 
-            if ($this->imagex) {
-                $this->image = $this->imagex;
-                $fileImage = $this->image->Store('public/images/promotions');
-            } else {
-                $fileImage = $this->image;
-            }
+        if(App::isLocale('en')){
+            $this->validate(Promotion::rules($this->record_id), Promotion::$english_messages);
+        }else{
+            $this->validate(Promotion::rules($this->record_id), Promotion::$spanish_messages);
+        }
 
-            if ($this->image_enx) {
-                $this->image_en = $this->image_enx;
-                $fileImage_en = $this->image_en->Store('public/images/promotions');
-            } else {
-                $fileImage_en = $this->image_en;
-            }
+
+        if ($this->imagex) {
+            $this->image = $this->imagex;
+            $fileImage = $this->image->Store('public/images/promotions');
+        } else {
+            $fileImage = $this->image;
+        }
 
         Promotion::updateOrCreate(['id' => $this->record_id], [
-            'name'   => $this->name,
+            'name'          => $this->name,
             'description'   => $this->description,
-            'image'      => $fileImage,
-            'image_en'  => $fileImage_en,
+            'image'         => $fileImage,
+            'language'      => $this->language,
 		]);
 
         session()->flash('message',
@@ -86,19 +83,19 @@ class Promotions extends Component {
 	public function edit($id) {
         $this->resetInputFields();
 		$record = Promotion::findOrFail($id);
-        $this->record_id = $id;
-        $this->name = $record->name;
-		$this->description = $record->description;
-        $this->image = $record->image;
-        $this->image_en = $record->image_en;
+        $this->record_id    = $id;
+        $this->name         = $record->name;
+		$this->description  = $record->description;
+        $this->image        = $record->image;
+        $this->language     = $record->language;
 		$this->openModal();
 	}
 
 
-    public function delete($id)
+    public function delete(Promotion $promotion)
     {
-        Promotion::find($id)->delete();
-        session()->flash('message', 'Promotion Deleted Successfully.');
+        $promotion->delete();
+        session()->flash('message', __('Promotion Deleted Successfully.'));
     }
 
     public function create()
