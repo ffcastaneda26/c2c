@@ -30,7 +30,6 @@ class Promotion extends Model
         } else {
             return [
                 'name' => "required|min:3|max:50|string|unique:promotions,name,{$id}",
-                'imagex'     => 'required',
                 'language'  =>  'required',
             ];
         }
