@@ -4,7 +4,7 @@
         <div class="vehicle">
             <div class="listing-thumbnail">
 
-                <a href="{{ url('inventory/show/' . $vehicle->id) }}">
+                <a href="{{url('inventory/show/'. App::currentLocale() . '/' . $vehicle->id) }}">
                     @if(explode(",", $vehicle->images)[0])
                         <img  src="{{explode(",", $vehicle->images)[0] }}"
                                 onerror=this.src="{{ asset('images/default.jpeg') }}">
@@ -16,8 +16,9 @@
 
             </div>
 
+
             <div class="listing-details">
-                <a class="vehicle-name" href="{{ url('inventory/show/' . $vehicle->id) }}">
+                <a class="vehicle-name" href="{{url('inventory/show/'. App::currentLocale() . '/' . $vehicle->id) }}">
                         @if($vehicle->year || $vehicle->make || $vehicle->model )
                            {{  $vehicle->year }} {{ $vehicle->make  }} {{  $vehicle->model   }}
                         @else
@@ -33,7 +34,7 @@
                         @endif
                     </div>
                     <div class="vehicle-stocks">STOCK  {{  $vehicle->stock }}</div>
-                    <a href="{{ url('inventory/show/' . $vehicle->id) }}" class="price">Call for Info</a>
+                    <a href="{{url('inventory/show/'. App::currentLocale() . '/' . $vehicle->id) }}" class="price">{{ __("Call for Info") }}</a>
                 </div>
             </div>
         </div>

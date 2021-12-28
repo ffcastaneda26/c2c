@@ -324,8 +324,11 @@ class InventoryController extends Controller
 
     /** Lee y regresa el vehículo solicitado */
 
-    public function show(Request $request,Inventory $vehicle){
+    public function show(Request $request,$language,Inventory $vehicle){
+        session()->put('locale', $language);
+        App::setLocale(session()->get('locale'));
         $promotions = Promotion::language(App::currentLocale())->get();
+        dd($promotions->count(),"Idioma=" .App::currentLocale() );
         return view('inventory.vehicle_record',compact('vehicle','promotions'));
     }
 
