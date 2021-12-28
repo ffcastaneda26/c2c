@@ -6,7 +6,7 @@
         <div class="custom-vehicle-details">
             <div class="vehicle-details">
                 <div class="custom-nav-tabs">
-                    <a class="custom-nav-item active" data-controls="overview">Overview</a>
+                    <a class="custom-nav-item active" data-controls="overview">{{__('Overview')}}</a>
                 </div>
                 <div class="custom-tab-content">
                     <div class="custom-tab-pane active" id="overview">
