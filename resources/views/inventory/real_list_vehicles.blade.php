@@ -43,5 +43,7 @@
 </div>
 <!-- Paginacion -->
 <div class="pagination">
-    {{ $vehicles->links('vendor.pagination.tailwind') }}
+    {{-- {{ $vehicles->links('vendor.pagination.tailwind') }} --}}
+    {{ $vehicles->appends(request()->input())->links('vendor.pagination.tailwind') }}
+
 </div>
