@@ -70,7 +70,6 @@ class InventoryController extends Controller
         if($request->year  ){
             $search_year = $request->year;
         }
-
         if($request->make || $request->body || $request->year  ){
             $vehicles = $this->read_vehicles($request);
         }else{
@@ -80,13 +79,13 @@ class InventoryController extends Controller
                             ->orderby('year')
                             ->orderby('body')
                             ->paginate($this->pages_by_query);
+            
         }
 
 
         $makesList  =  $this->fill_combos('make');
         $yearsList  =  $this->fill_combos('year');
         $bodiesList =  $this->fill_combos('body');
-
         return view('inventory.inventory_page',compact('makesList','yearsList','bodiesList',
                                                   'search_make','search_body','search_year',
                                                   'title_dealer','dealer_id',
@@ -172,10 +171,8 @@ class InventoryController extends Controller
 
     /** Lee vehículos con los filtros */
     public function read_vehicles(Request $request){
-
         $wheremake= $this->where_sql($request->make);
         $wherebody= $this->where_sql($request->body);
-
         $whereyear= $this->where_sql($request->year);
 
         if(!count($whereyear)){
@@ -198,8 +195,6 @@ class InventoryController extends Controller
             $this->mileage_to =999999;
         }
 
-
-
         /**+--------------------------------+
          * |        | Axo   | Marca | Tipo  |
          * +--------+-------+-------+-------+
@@ -210,13 +205,12 @@ class InventoryController extends Controller
          * | Tipo   |  C    |   E   |   G   |
          * +--------+---------------+-------+
          */
-
-
+        
             // (A) Solo Axo
         if(count($whereyear) && !count($wheremake) && !count($wherebody)){
 
             return Inventory::whereNotNull('stock')
-                                ->wherein('year',$whereyear)
+                                ->wherein('year',$whereyear) //Solo anio
                                 ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
                                 ->orderby('make')
                                 ->orderby('year')
@@ -244,7 +238,7 @@ class InventoryController extends Controller
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
                             ->wherein('year',$whereyear)
                             ->wherein('make',$wheremake)
-                            ->wherein('make',$wherebody)
+                            ->wherein('body',$wherebody)
                             ->orderby('make')
                             ->orderby('year')
                             ->orderby('body')
@@ -254,8 +248,8 @@ class InventoryController extends Controller
         // (D) Marca
         if(!count($whereyear) && count($wheremake) && !count($wherebody)){
             return Inventory::whereNotNull('stock')
+                            ->wherein('make',$wheremake) //Solo Marca
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
-                            ->wherein('make',$wheremake)
                             ->orderby('make')
                             ->orderby('year')
                             ->orderby('body')
@@ -267,7 +261,7 @@ class InventoryController extends Controller
             return Inventory::whereNotNull('stock')
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
                             ->wherein('make',$wheremake)
-                            ->wherein('make',$wherebody)
+                            ->wherein('body',$wherebody)
                             ->orderby('make')
                             ->orderby('year')
                             ->orderby('body')
@@ -279,7 +273,7 @@ class InventoryController extends Controller
             return Inventory::whereNotNull('stock')
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
                             ->wherein('year',$whereyear)
-                            ->wherein('make',$wherebody)
+                            ->wherein('body',$wherebody)
                             ->orderby('make')
                             ->orderby('year')
                             ->orderby('body')
@@ -289,8 +283,8 @@ class InventoryController extends Controller
         // (G) Solo Tipo
         if(!count($whereyear) && !count($wheremake) && count($wherebody)){
             return Inventory::whereNotNull('stock')
+                            ->wherein('body',$wherebody) //solo body
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
-                            ->wherein('make',$wherebody)
                             ->orderby('make')
                             ->orderby('year')
                             ->orderby('body')
@@ -300,7 +294,7 @@ class InventoryController extends Controller
         // (Todos) sin axo-marca-tipo
         if(!count($whereyear) && !count($wheremake) && !count($wherebody)){
             return Inventory::whereNotNull('stock')
-                            ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
+                            ->whereBetween('mileage', [$request->mileage_from,$request->mileage_to])
                                 ->orderby('make')
                                 ->orderby('year')
                                 ->orderby('body')
@@ -328,7 +322,7 @@ class InventoryController extends Controller
         session()->put('locale', $language);
         App::setLocale(session()->get('locale'));
         $promotions = Promotion::language(App::currentLocale())->get();
-        dd($promotions->count(),"Idioma=" .App::currentLocale() );
+
         return view('inventory.vehicle_record',compact('vehicle','promotions'));
     }
 

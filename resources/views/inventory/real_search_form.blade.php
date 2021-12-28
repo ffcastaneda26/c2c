@@ -1,4 +1,4 @@
-<form class="filters-wrap" action="{{ url('inventory/' . $dealer_id) }}" method="get" id="filterForm">
+<form class="filters-wrap" action="{{ url('inventory/'. App::currentLocale() . '/' . $dealer_id) }}" method="get" id="filterForm">
     <div class="heading">{{ __('Filter your Search') }}</div>
     <div class="filter-group pd15">
         <input class="filter-input" type="text" name="search" placeholder="{{ __('Search Make, Model Or Stock...') }}" value=""/>
@@ -12,7 +12,7 @@
         <ul id="makes" class="filter-item-wrap">
             <li class="cl-allfilter">
                 <input id="makeAll" class="allChackBtn" type="checkbox" name="make[]" value="">
-                <label for="makeAll">{{ __('All Makes') }}/label>
+                <label for="makeAll">{{ __('All Makes') }}</label>
             </li>
             @foreach($makesList as $make)
                 <li class="cl-filter">
@@ -79,7 +79,7 @@
             <div class="filter-select-row">
                 <div class="selectlabel uppercase">{{ __('From') }}</div>
                 <div class="selectWrap">
-                    <select class="form-control" name="mileage_from">
+                    <select class="form-control" name="mileage_from" id="mileage_from">
                         <option class="uppercase"  value="">{{ __('All') }}</option>
                         @for ($mileage =10000 ; $mileage <=180000 ; $mileage=$mileage+10000)
                             <option value="{{ $mileage }}">{{ number_format($mileage, 0, '.', ',') }}</option>
@@ -90,7 +90,7 @@
             <div class="filter-select-row">
                 <div class="selectlabel uppercase">{{ __('To') }}</div>
                 <div class="selectWrap">
-                    <select class="form-control" name="mileage_to">
+                    <select class="form-control" name="mileage_to" id="mileage_to">
                         <option class="uppercase"  value="">{{ __('All') }}</option>
                         @for ($mileage =20000 ; $mileage <=200000 ; $mileage=$mileage+10000)
                             <option value="{{ $mileage }}">{{ number_format($mileage, 0, '.', ',') }}</option>
@@ -101,5 +101,6 @@
         </ul>
     </div>
     <div class="hidden">{{ $dealer_id }}</div>
+
     <button class="btn" type="submit">{{ __('Filter') }}</button>
 </form>
