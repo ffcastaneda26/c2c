@@ -82,7 +82,11 @@
                     <select class="form-control" name="mileage_from" id="mileage_from">
                         <option class="uppercase"  value="">{{ __('All') }}</option>
                         @for ($mileage =10000 ; $mileage <=180000 ; $mileage=$mileage+10000)
-                            <option value="{{ $mileage }}">{{ number_format($mileage, 0, '.', ',') }}</option>
+                            @if($mileage == $mileage_from)
+                                <option value="{{ $mileage }}" selected>{{ number_format($mileage, 0, '.', ',') }}</option>
+                            @else
+                                <option value="{{ $mileage }}">{{ number_format($mileage, 0, '.', ',') }}</option>
+                            @endif
                         @endfor>
                     </select>
                 </div>
@@ -92,9 +96,13 @@
                 <div class="selectWrap">
                     <select class="form-control" name="mileage_to" id="mileage_to">
                         <option class="uppercase"  value="">{{ __('All') }}</option>
-                        @for ($mileage =20000 ; $mileage <=200000 ; $mileage=$mileage+10000)
-                            <option value="{{ $mileage }}">{{ number_format($mileage, 0, '.', ',') }}</option>
-                        @endfor
+                        @for ($mileage =10000 ; $mileage <=180000 ; $mileage=$mileage+10000)
+                            @if($mileage == $mileage_to)
+                                <option value="{{ $mileage }}" selected>{{ number_format($mileage, 0, '.', ',') }}</option>
+                            @else
+                                <option value="{{ $mileage }}">{{ number_format($mileage, 0, '.', ',') }}</option>
+                            @endif
+                        @endfor>
                     </select>
                 </div>
             </div>

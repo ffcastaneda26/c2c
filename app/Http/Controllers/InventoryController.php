@@ -39,6 +39,20 @@ class InventoryController extends Controller
     /** Index presenta formulario para los filtros */
     public function inventory(Request $request,$language,$dealer_id){
 
+        $this->mileage_from = $request->mileage_from;
+        $this->mileage_to = $request->mileage_to;
+
+
+        if(!$this->mileage_from){
+            $this->mileage_from =0;
+        }
+
+        if(!$this->mileage_to){
+            $this->mileage_to =999999;
+        }
+
+        //dd('Millas desde ' .  $this->mileage_from . ' Hasta ' .  $this->mileage_to);
+
         session()->put('locale', $language);
         App::setLocale(session()->get('locale'));
         session(['inventory_url'  =>  url()->full()]);
@@ -75,19 +89,22 @@ class InventoryController extends Controller
         }else{
             $vehicles = Inventory::whereNotNull('stock')
                             ->where('dealer_id',$this->dealer_id)
+                            ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
                             ->orderby('make')
                             ->orderby('year')
                             ->orderby('body')
                             ->paginate($this->pages_by_query);
-            
+
         }
 
 
         $makesList  =  $this->fill_combos('make');
         $yearsList  =  $this->fill_combos('year');
         $bodiesList =  $this->fill_combos('body');
+        $mileage_from = $this->mileage_from;
+        $mileage_to   = $this->mileage_to;
         return view('inventory.inventory_page',compact('makesList','yearsList','bodiesList',
-                                                  'search_make','search_body','search_year',
+                                                  'search_make','search_body','search_year','mileage_from','mileage_to',
                                                   'title_dealer','dealer_id',
                                                   'vehicles'));
     }
@@ -160,20 +177,12 @@ class InventoryController extends Controller
 
     }
 
-    /** Consulta de Inventario */
-
-    // public function query_inventory(Request $request){
-
-    //     $vehicles = $this->read_vehicles($request);
-
-    //     return view('inventory.inventory_list',compact('vehicles'));
-    // }
-
     /** Lee vehículos con los filtros */
     public function read_vehicles(Request $request){
         $wheremake= $this->where_sql($request->make);
         $wherebody= $this->where_sql($request->body);
         $whereyear= $this->where_sql($request->year);
+
 
         if(!count($whereyear)){
             $whereyear =[];
@@ -195,6 +204,7 @@ class InventoryController extends Controller
             $this->mileage_to =999999;
         }
 
+
         /**+--------------------------------+
          * |        | Axo   | Marca | Tipo  |
          * +--------+-------+-------+-------+
@@ -205,7 +215,7 @@ class InventoryController extends Controller
          * | Tipo   |  C    |   E   |   G   |
          * +--------+---------------+-------+
          */
-        
+
             // (A) Solo Axo
         if(count($whereyear) && !count($wheremake) && !count($wherebody)){
 
