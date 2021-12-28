@@ -16,6 +16,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Console\Migrations\RollbackCommand;
 
+use function PHPUnit\Framework\isNull;
+
 class InventoryController extends Controller
 {
 
@@ -39,6 +41,22 @@ class InventoryController extends Controller
     /** Index presenta formulario para los filtros */
     public function inventory(Request $request,$language,$dealer_id){
 
+
+        if($request->make && count($request->make) == 1 && $request->make[0] == null ){
+            $request->make = null;
+        }
+
+        if($request->year && count($request->year) == 1 && $request->year[0] == null ){
+
+
+            $request->year = null;
+        }
+
+        if($request->body && count($request->body) == 1 && $request->body[0] == null ){
+            $request->body = null;
+        }
+
+
         $this->mileage_from = $request->mileage_from;
         $this->mileage_to = $request->mileage_to;
 
@@ -51,7 +69,6 @@ class InventoryController extends Controller
             $this->mileage_to =999999;
         }
 
-        //dd('Millas desde ' .  $this->mileage_from . ' Hasta ' .  $this->mileage_to);
 
         session()->put('locale', $language);
         App::setLocale(session()->get('locale'));
@@ -73,7 +90,6 @@ class InventoryController extends Controller
         $search_body = [];
         $search_year =[];
 
-
         if($request->make  ){
             $search_make = $request->make;
         }
@@ -84,6 +100,7 @@ class InventoryController extends Controller
         if($request->year  ){
             $search_year = $request->year;
         }
+
         if($request->make || $request->body || $request->year  ){
             $vehicles = $this->read_vehicles($request);
         }else{
@@ -179,9 +196,11 @@ class InventoryController extends Controller
 
     /** Lee vehículos con los filtros */
     public function read_vehicles(Request $request){
+
         $wheremake= $this->where_sql($request->make);
         $wherebody= $this->where_sql($request->body);
         $whereyear= $this->where_sql($request->year);
+
 
 
         if(!count($whereyear)){
