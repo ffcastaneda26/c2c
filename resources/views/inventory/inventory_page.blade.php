@@ -16,7 +16,7 @@
                         </div>
 
                         <div class="custom-vehicle-details">
-                            Hola mundo
+
                             @if ($errors->any())
                                 <div class="alert alert-danger bg-red-500">
                                     <ul>
@@ -26,7 +26,12 @@
                                     </ul>
                                 </div>
                             @endif
-                            @include('inventory.real_list_vehicles')
+
+                            @if($vehicles->count())
+                                @include('inventory.real_list_vehicles')
+                            @else
+                                <p>{{ __('No Records Found') }}</p>
+                            @endif
                         </div>
                     </div>
                 </div>
