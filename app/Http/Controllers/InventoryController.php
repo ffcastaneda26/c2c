@@ -76,8 +76,6 @@ class InventoryController extends Controller
             $title_dealer ="Texas Inventory";
         }
 
-
-
         if($dealer_id == 'oklahoma-inventory'){
             $this->dealer_id = 'crossroads';
             $title_dealer ="Oklahoma Inventory";
@@ -87,20 +85,21 @@ class InventoryController extends Controller
         $search_body = [];
         $search_year =[];
 
-        if($request->make  ){
+        if($request->make){
             $search_make = $request->make;
         }
-        if($request->body  ){
+
+        if($request->body){
             $search_body = $request->body;
         }
 
-        if($request->year  ){
+        if($request->year){
             $search_year = $request->year;
         }
 
-        if($request->make || $request->body || $request->year  ){
+        if ($request->make || $request->body || $request->year) {
             $vehicles = $this->read_vehicles($request);
-        }else{
+        } else {
             $searchTerm = '%' . $request->search . '%';
             $vehicles = Inventory::whereNotNull('stock')
                             ->where('dealer_id',$this->dealer_id)
@@ -110,9 +109,7 @@ class InventoryController extends Controller
                             ->orderby('year')
                             ->orderby('body')
                             ->paginate($this->pages_by_query);
-
         }
-
 
         $makesList  =  $this->fill_combos('make');
         $yearsList  =  $this->fill_combos('year');
@@ -120,30 +117,22 @@ class InventoryController extends Controller
         $mileage_from = $this->mileage_from;
         $mileage_to   = $this->mileage_to;
         return view('inventory.inventory_page',compact('makesList','yearsList','bodiesList',
-                                                  'search_make','search_body','search_year','mileage_from','mileage_to',
-                                                  'title_dealer','dealer_id',
-                                                  'vehicles'));
+                                                'search_make','search_body','search_year','mileage_from','mileage_to',
+                                                'title_dealer','dealer_id',
+                                                'vehicles'));
     }
 
-    /**
-    * @return \Illuminate\Support\Collection
-    */
+
     public function importExportView()
     {
-       return view('import');
+        return view('import');
     }
 
-    /**
-    * @return \Illuminate\Support\Collection
-    */
     public function export()
     {
         return Excel::download(new UsersExport, 'users.xlsx');
     }
 
-    /**
-    * @return \Illuminate\Support\Collection
-    */
     public function import()
     {
         Excel::import(new UsersImport,request()->file('file'));
@@ -166,17 +155,14 @@ class InventoryController extends Controller
 
     }
 
-
     // Importar Inventario
 
     public function inventoryimportExportView(){
         $records = TemporaryInventory::paginate(10);
         return view('inventory_import_export_view',compact('records'));
-
     }
 
     public function inventory_import(){
-
         try {
             TemporaryInventory::truncate();
 
@@ -190,7 +176,6 @@ class InventoryController extends Controller
             report($e);
             return back()->with(['error',__('Inventory was not Imported'),]);
         }
-
     }
 
     /** Lee vehículos con los filtros */
@@ -199,8 +184,6 @@ class InventoryController extends Controller
         $wheremake= $this->where_sql($request->make);
         $wherebody= $this->where_sql($request->body);
         $whereyear= $this->where_sql($request->year);
-
-
 
         if(!count($whereyear)){
             $whereyear =[];
@@ -221,7 +204,6 @@ class InventoryController extends Controller
         if(!$this->mileage_to){
             $this->mileage_to =999999;
         }
-
 
         /**+--------------------------------+
          * |        | Axo   | Marca | Tipo  |
@@ -245,7 +227,6 @@ class InventoryController extends Controller
                                 ->orderby('year')
                                 ->orderby('body')
                                 ->paginate($this->pages_by_query);
-
         }
 
         // (B) Axo y Marca
@@ -259,7 +240,6 @@ class InventoryController extends Controller
                             ->orderby('year')
                             ->orderby('body')
                             ->paginate($this->pages_by_query);
-
         }
 
         // (C) Axo - Marca - Tipo
@@ -336,10 +316,7 @@ class InventoryController extends Controller
                             ->orderby('body')
                             ->paginate($this->pages_by_query);
         }
-
-
     }
-
 
     /** Recibe array de select multiple y regresa array solo con valores */
     private function where_sql($input_array=null){
@@ -373,9 +350,7 @@ class InventoryController extends Controller
      */
 
     public function confirm_update_inventory(){
-
         $locations = DB::table('temporary_inventories')->select('dealer_id')->distinct()->get()->toArray();
-
         if(count($locations) == 2 ){
             Inventory::truncate();
             $temporary_inventory_records = TemporaryInventory::all()->toArray();
@@ -392,11 +367,9 @@ class InventoryController extends Controller
         return redirect()->route('inventoryimportExportView');
     }
 
-
     private function create_inventory_record(array $temporary_inventory_records){
         foreach($temporary_inventory_records as $temporary_inventory_record ){
             Inventory::create($temporary_inventory_record);
         }
     }
-
 }

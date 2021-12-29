@@ -36,7 +36,7 @@ class Inventory extends Model
     {
         if (trim($valor) != "") {
             $valor =str_replace(' ','%',$valor);
-            $query->where(DB::raw("CONCAT(make,body,year)"), 'LIKE', "%$valor%");
+            $query->where(DB::raw("CONCAT(make,model,year, stock)"), 'LIKE', "%$valor%");
         }
     }
 }
