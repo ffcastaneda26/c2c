@@ -7,7 +7,6 @@
                 <h1 class="cl-page-title"><span>{{ __($title_dealer) }}</span></h1>
                 <div class="vehicle-content paddlb40 container">
                     <div class="custom-inventory-wrap">
-
                         <div class="custom-sidebar">
                             <div class="filters">
                                 @include('inventory.real_search_form')
@@ -17,6 +16,16 @@
                         </div>
 
                         <div class="custom-vehicle-details">
+                            Hola mundo
+                            @if ($errors->any())
+                                <div class="alert alert-danger bg-red-500">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li class="text-lg text-black">{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             @include('inventory.real_list_vehicles')
                         </div>
                     </div>

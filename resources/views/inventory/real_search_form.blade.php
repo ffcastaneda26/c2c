@@ -79,7 +79,7 @@
             <div class="filter-select-row">
                 <div class="selectlabel uppercase">{{ __('From') }}</div>
                 <div class="selectWrap">
-                    <select class="form-control" name="mileage_from" id="mileage_from">
+                    <select class="form-control" name="mileage_from" id="mileage_from" class="@error('mileage_from') is-invalid @enderror">
                         <option class="uppercase"  value="">{{ __('All') }}</option>
                         @for ($mileage =10000 ; $mileage <=180000 ; $mileage=$mileage+10000)
                             @if($mileage == $mileage_from)
@@ -89,12 +89,15 @@
                             @endif
                         @endfor>
                     </select>
+                    @error('mileage_from')
+                        <div class="alert alert-danger text-red-500">{{ $error }}</div>
+                    @enderror
                 </div>
             </div>
             <div class="filter-select-row">
                 <div class="selectlabel uppercase">{{ __('To') }}</div>
                 <div class="selectWrap">
-                    <select class="form-control" name="mileage_to" id="mileage_to">
+                    <select class="form-control" name="mileage_to" id="mileage_to" class="@error('mileage_to') is-invalid @enderror">
                         <option class="uppercase"  value="">{{ __('All') }}</option>
                         @for ($mileage =10000 ; $mileage <=180000 ; $mileage=$mileage+10000)
                             @if($mileage == $mileage_to)
@@ -104,6 +107,9 @@
                             @endif
                         @endfor>
                     </select>
+                    @error('mileage_to')
+                        <div class="alert alert-danger text-red-500">{{ $error }}</div>
+                    @enderror
                 </div>
             </div>
         </ul>
