@@ -239,6 +239,7 @@ class InventoryController extends Controller
         if(count($whereyear) && !count($wheremake) && !count($wherebody)){
 
             return Inventory::whereNotNull('stock')
+                                ->where('dealer_id',$this->dealer_id)
                                 ->wherein('year',$whereyear) //Solo anio
                                 ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
                                 ->orderby('make')
@@ -251,6 +252,7 @@ class InventoryController extends Controller
         // (B) Axo y Marca
         if(count($whereyear) && count($wheremake) && !count($wherebody)){
             return Inventory::whereNotNull('stock')
+                            ->where('dealer_id',$this->dealer_id)
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
                             ->wherein('year',$whereyear)
                             ->wherein('make',$wheremake)
@@ -264,6 +266,7 @@ class InventoryController extends Controller
         // (C) Axo - Marca - Tipo
         if(count($whereyear) && count($wheremake) && count($wherebody)){
             $this->vehicles = Inventory::whereNotNull('stock')
+                            ->where('dealer_id',$this->dealer_id)
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
                             ->wherein('year',$whereyear)
                             ->wherein('make',$wheremake)
@@ -277,6 +280,7 @@ class InventoryController extends Controller
         // (D) Marca
         if(!count($whereyear) && count($wheremake) && !count($wherebody)){
             return Inventory::whereNotNull('stock')
+                            ->where('dealer_id',$this->dealer_id)
                             ->wherein('make',$wheremake) //Solo Marca
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
                             ->orderby('make')
@@ -288,6 +292,7 @@ class InventoryController extends Controller
         // (E) Marca y Tipo
         if(!count($whereyear) && count($wheremake) && count($wherebody)){
             return Inventory::whereNotNull('stock')
+                            ->where('dealer_id',$this->dealer_id)
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
                             ->wherein('make',$wheremake)
                             ->wherein('body',$wherebody)
@@ -300,6 +305,7 @@ class InventoryController extends Controller
         // (F) Axo-TIpo
         if(count($whereyear) && !count($wheremake) && count($wherebody)){
             return Inventory::whereNotNull('stock')
+                            ->where('dealer_id',$this->dealer_id)
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
                             ->wherein('year',$whereyear)
                             ->wherein('body',$wherebody)
@@ -312,6 +318,7 @@ class InventoryController extends Controller
         // (G) Solo Tipo
         if(!count($whereyear) && !count($wheremake) && count($wherebody)){
             return Inventory::whereNotNull('stock')
+                            ->where('dealer_id',$this->dealer_id)
                             ->wherein('body',$wherebody) //solo body
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
                             ->orderby('make')
@@ -323,11 +330,12 @@ class InventoryController extends Controller
         // (Todos) sin axo-marca-tipo
         if(!count($whereyear) && !count($wheremake) && !count($wherebody)){
             return Inventory::whereNotNull('stock')
+                            ->where('dealer_id',$this->dealer_id)
                             ->whereBetween('mileage', [$request->mileage_from,$request->mileage_to])
-                                ->orderby('make')
-                                ->orderby('year')
-                                ->orderby('body')
-                                ->paginate($this->pages_by_query);
+                            ->orderby('make')
+                            ->orderby('year')
+                            ->orderby('body')
+                            ->paginate($this->pages_by_query);
         }
 
 
