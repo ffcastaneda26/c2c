@@ -32,30 +32,28 @@ class InventoryController extends Controller
     public $mileage_from,$mileage_to;
     public $pages_by_query;
     public $delar_id= null;
+    public $searchTerm;
+    public $search;
+
     public function __construct()
     {
         $this->pages_by_query =10;
-
     }
 
     /** Index presenta formulario para los filtros */
     public function inventory(Request $request,$language,$dealer_id){
-
 
         if($request->make && count($request->make) == 1 && $request->make[0] == null ){
             $request->make = null;
         }
 
         if($request->year && count($request->year) == 1 && $request->year[0] == null ){
-
-
             $request->year = null;
         }
 
         if($request->body && count($request->body) == 1 && $request->body[0] == null ){
             $request->body = null;
         }
-
 
         $this->mileage_from = $request->mileage_from;
         $this->mileage_to = $request->mileage_to;
@@ -68,7 +66,6 @@ class InventoryController extends Controller
         if(!$this->mileage_to){
             $this->mileage_to =999999;
         }
-
 
         session()->put('locale', $language);
         App::setLocale(session()->get('locale'));
@@ -104,8 +101,10 @@ class InventoryController extends Controller
         if($request->make || $request->body || $request->year  ){
             $vehicles = $this->read_vehicles($request);
         }else{
+            $searchTerm = '%' . $request->search . '%';
             $vehicles = Inventory::whereNotNull('stock')
                             ->where('dealer_id',$this->dealer_id)
+                            ->Fullsearch($searchTerm)
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
                             ->orderby('make')
                             ->orderby('year')

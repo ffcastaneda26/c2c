@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Inventory extends Model
 {
@@ -30,6 +31,12 @@ class Inventory extends Model
         'trim'
     ];
 
-
-
+    // Nombre Completo
+    public function scopeFullsearch($query,$valor)
+    {
+        if (trim($valor) != "") {
+            $valor =str_replace(' ','%',$valor);
+            $query->where(DB::raw("CONCAT(make,body,year)"), 'LIKE', "%$valor%");
+        }
+    }
 }
