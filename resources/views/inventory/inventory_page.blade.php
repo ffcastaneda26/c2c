@@ -30,7 +30,7 @@
                             @if($vehicles->count())
                                 @include('inventory.real_list_vehicles')
                             @else
-                                <p>{{ __('No Records Found') }}</p>
+                            <h1 class="cl-page-title"><span>{{ __('No Records Found') }}</span></h1>
                             @endif
                         </div>
                     </div>
