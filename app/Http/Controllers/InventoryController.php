@@ -105,6 +105,7 @@ class InventoryController extends Controller
                             ->where('dealer_id',$this->dealer_id)
                             ->Fullsearch($searchTerm)
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
+                            ->orderby('images', 'desc')
                             ->orderby('make')
                             ->orderby('year')
                             ->orderby('body')
