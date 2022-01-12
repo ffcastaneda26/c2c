@@ -31,13 +31,13 @@ class InventoryController extends Controller
     public $image_urls = [];
     public $mileage_from,$mileage_to;
     public $pages_by_query;
-    public $delar_id= null;
+    public $dealar_id= null;
     public $searchTerm;
     public $search;
 
     public function __construct()
     {
-        $this->pages_by_query =10;
+        $this->pages_by_query =12;
     }
 
     /** Index presenta formulario para los filtros */
@@ -143,7 +143,14 @@ class InventoryController extends Controller
 
     // Llena combos recibiendo el atributo o campo
     private function fill_combos($attribute){
-        $sql = 'SELECT DISTINCT ' . $attribute . ' as attribute,count(*) as total FROM inventories WHERE ' . $attribute . ' IS NOT NULL AND stock IS NOT NULL GROUP BY '. $attribute . ' ORDER BY ' . $attribute ;
+        $sql = 'SELECT DISTINCT ';
+        $sql.=  $attribute . ' as attribute,count(*) as total ';
+        $sql.= 'FROM inventories ';
+        $sql.= 'WHERE ' . $attribute . ' IS NOT NULL ';
+        $sql.= " AND dealer_id='" .$this->dealer_id . "'";
+        $sql.= ' AND stock IS NOT NULL ';
+        $sql.= ' GROUP BY '. $attribute;
+        $sql.= ' ORDER BY ' . $attribute ;
 
         $results = DB::select($sql);
         $result_array = array();
@@ -224,6 +231,7 @@ class InventoryController extends Controller
                                 ->where('dealer_id',$this->dealer_id)
                                 ->wherein('year',$whereyear) //Solo anio
                                 ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
+                                ->orderby('images', 'desc')
                                 ->orderby('make')
                                 ->orderby('year')
                                 ->orderby('body')
@@ -235,6 +243,7 @@ class InventoryController extends Controller
             return Inventory::whereNotNull('stock')
                             ->where('dealer_id',$this->dealer_id)
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
+                            ->orderby('images', 'desc')
                             ->wherein('year',$whereyear)
                             ->wherein('make',$wheremake)
                             ->orderby('make')
@@ -248,6 +257,7 @@ class InventoryController extends Controller
             $this->vehicles = Inventory::whereNotNull('stock')
                             ->where('dealer_id',$this->dealer_id)
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
+                            ->orderby('images', 'desc')
                             ->wherein('year',$whereyear)
                             ->wherein('make',$wheremake)
                             ->wherein('body',$wherebody)
@@ -263,6 +273,7 @@ class InventoryController extends Controller
                             ->where('dealer_id',$this->dealer_id)
                             ->wherein('make',$wheremake) //Solo Marca
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
+                            ->orderby('images', 'desc')
                             ->orderby('make')
                             ->orderby('year')
                             ->orderby('body')
@@ -274,6 +285,7 @@ class InventoryController extends Controller
             return Inventory::whereNotNull('stock')
                             ->where('dealer_id',$this->dealer_id)
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
+                            ->orderby('images', 'desc')
                             ->wherein('make',$wheremake)
                             ->wherein('body',$wherebody)
                             ->orderby('make')
@@ -287,6 +299,7 @@ class InventoryController extends Controller
             return Inventory::whereNotNull('stock')
                             ->where('dealer_id',$this->dealer_id)
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
+                            ->orderby('images', 'desc')
                             ->wherein('year',$whereyear)
                             ->wherein('body',$wherebody)
                             ->orderby('make')
@@ -301,6 +314,7 @@ class InventoryController extends Controller
                             ->where('dealer_id',$this->dealer_id)
                             ->wherein('body',$wherebody) //solo body
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
+                            ->orderby('images', 'desc')
                             ->orderby('make')
                             ->orderby('year')
                             ->orderby('body')
@@ -312,6 +326,7 @@ class InventoryController extends Controller
             return Inventory::whereNotNull('stock')
                             ->where('dealer_id',$this->dealer_id)
                             ->whereBetween('mileage', [$request->mileage_from,$request->mileage_to])
+                            ->orderby('images', 'desc')
                             ->orderby('make')
                             ->orderby('year')
                             ->orderby('body')
