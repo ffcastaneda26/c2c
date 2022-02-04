@@ -1,12 +1,16 @@
 <?php
 
-use App\Http\Livewire\Inventory;
+use App\Models\User;
+use Illuminate\Http\Request;
 use App\Http\Livewire\Promotions;
+use App\Http\Livewire\Inventories;
 use App\Imports\InventoriesImport;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FtpController;
 use App\Http\Controllers\InventoryController;
+use App\Models\Inventory;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +40,9 @@ Route::get('storage-link',function(){
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    $user = User::find(1);
+    $url = URL::temporarySignedRoute('inventario', now()->addMinutes(2), ['user' => $user]);
+    return view('dashboard' , compact('user', 'url'));
 })->name('dashboard');
 
 Route::get('language/{locale}', function ($locale) {
@@ -53,6 +59,14 @@ Route::get('export', [InventoryController::class, 'export'])->name('export');
 Route::post('import', [InventoryController::class, 'import'])->name('import');
 
 Route::get('promotions',Promotions::class)->name('promotions');
+Route::get('inventario', function(Request $request) {
+    if (!$request->hasValidSignature()) {
+        abort(401);
+    }
+    $inventario_general = Inventory::all();
+    return view('livewire.inventory', compact('inventario_general'));
+})->name('inventario');
+
 Route::get('inventory_import', [InventoryController::class, 'inventoryimportExportView'])->name('inventoryimportExportView');
 Route::post('inventory_import', [InventoryController::class, 'inventory_import'])->name('inventory_import');
 Route::get('inventory_export', [InventoryController::class, 'inventory_export'])->name('inventory_export');
@@ -65,3 +79,4 @@ Route::get('inventory/{language}/{dealer_id}', [InventoryController::class, 'inv
 
 /** Rutas de prueba */
 require 'pruebas.php';
+

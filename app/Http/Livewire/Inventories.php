@@ -3,19 +3,20 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use App\Models\Inventory;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\DB;
 
-class Inventory extends Component
+class Inventories extends Component
 {
     use WithPagination;
 
     public $makes;
     public $search_makes;
     public $make = [];
+    public $inventario_general;
 
     public function mount(){
-        $this->fill_makes();
     }
 
     public function render()
