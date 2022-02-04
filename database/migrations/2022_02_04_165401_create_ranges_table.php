@@ -15,8 +15,8 @@ class CreateRangesTable extends Migration
     {
         Schema::create('ranges', function (Blueprint $table) {
             $table->id();
-            $table->float('price_from', 8, 2);
-            $table->float('price_to', 8, 2);
+            $table->float('price_from', 8, 2)->unique();
+            $table->float('price_to', 8, 2)->unique();
         });
     }
 

@@ -16,7 +16,7 @@ class CreateTokensTable extends Migration
         Schema::create('tokens', function (Blueprint $table) {
             $table->id();
             $table->foreignId('range_id')->constrained('ranges');
-            $table->string('token',191)->nullable()->default(null)->comment('Token');
+            $table->string('token',191)->unique()->comment('Token');
             $table->timestamps();
         });
     }
