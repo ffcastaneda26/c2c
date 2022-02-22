@@ -102,7 +102,8 @@ class InventoryController extends Controller
         } else {
             $searchTerm = '%' . $request->search . '%';
             $vehicles = Inventory::whereNotNull('stock')
-                            ->where('dealer_id',$this->dealer_id)
+            ->where('dealer_id',$this->dealer_id)
+                            ->whereNotNull('images')
                             ->Fullsearch($searchTerm)
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
                             ->orderby('images', 'desc')
@@ -149,6 +150,7 @@ class InventoryController extends Controller
         $sql.= 'WHERE ' . $attribute . ' IS NOT NULL ';
         $sql.= " AND dealer_id='" .$this->dealer_id . "'";
         $sql.= ' AND stock IS NOT NULL ';
+        $sql.= ' AND images is NOT NULL ';
         $sql.= ' GROUP BY '. $attribute;
         $sql.= ' ORDER BY ' . $attribute ;
 
@@ -255,7 +257,8 @@ class InventoryController extends Controller
         // (C) Axo - Marca - Tipo
         if(count($whereyear) && count($wheremake) && count($wherebody)){
             $this->vehicles = Inventory::whereNotNull('stock')
-                            ->where('dealer_id',$this->dealer_id)
+            ->where('dealer_id',$this->dealer_id)
+                            ->whereNotNull('images')
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
                             ->orderby('images', 'desc')
                             ->wherein('year',$whereyear)
@@ -270,6 +273,7 @@ class InventoryController extends Controller
         // (D) Marca
         if(!count($whereyear) && count($wheremake) && !count($wherebody)){
             return Inventory::whereNotNull('stock')
+                            ->whereNotNull('images')
                             ->where('dealer_id',$this->dealer_id)
                             ->wherein('make',$wheremake) //Solo Marca
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
@@ -283,6 +287,7 @@ class InventoryController extends Controller
         // (E) Marca y Tipo
         if(!count($whereyear) && count($wheremake) && count($wherebody)){
             return Inventory::whereNotNull('stock')
+                            ->whereNotNull('images')
                             ->where('dealer_id',$this->dealer_id)
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
                             ->orderby('images', 'desc')
@@ -297,6 +302,7 @@ class InventoryController extends Controller
         // (F) Axo-TIpo
         if(count($whereyear) && !count($wheremake) && count($wherebody)){
             return Inventory::whereNotNull('stock')
+                            ->whereNotNull('images')
                             ->where('dealer_id',$this->dealer_id)
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
                             ->orderby('images', 'desc')
@@ -311,6 +317,7 @@ class InventoryController extends Controller
         // (G) Solo Tipo
         if(!count($whereyear) && !count($wheremake) && count($wherebody)){
             return Inventory::whereNotNull('stock')
+                            ->whereNotNull('images')
                             ->where('dealer_id',$this->dealer_id)
                             ->wherein('body',$wherebody) //solo body
                             ->whereBetween('mileage', [$this->mileage_from,$this->mileage_to])
@@ -324,6 +331,7 @@ class InventoryController extends Controller
         // (Todos) sin axo-marca-tipo
         if(!count($whereyear) && !count($wheremake) && !count($wherebody)){
             return Inventory::whereNotNull('stock')
+                            ->whereNotNull('images')
                             ->where('dealer_id',$this->dealer_id)
                             ->whereBetween('mileage', [$request->mileage_from,$request->mileage_to])
                             ->orderby('images', 'desc')
