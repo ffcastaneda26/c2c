@@ -396,4 +396,10 @@ class InventoryController extends Controller
             Inventory::create($temporary_inventory_record);
         }
     }
+
+
+    public function read_stock($stock){
+        return response()->json(Inventory::where('stock',$stock)->first());
+    }
+
 }

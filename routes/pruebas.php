@@ -1,4 +1,5 @@
 <?php
+use App\Models\Inventory;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FtpController;
 
@@ -11,4 +12,15 @@ Route::get('ftp_inventory',function(){
 
 Route::get('registra_log',function(){
     logger("Ejecutado a las " . now());
+});
+
+Route::get('neoapi',function(){
+    $unitArrayc2c =  json_decode(Http::withHeaders([
+        'Connection' => 'keep-alive',
+        'Access-Token' => 'dRfgmuyehzDmagMcz62wrRiqa',
+        'Content-Type' => 'application/json',
+        'Accept' => 'application/json'
+    ])
+    ->get('https://api.neoverify.net/v1/get_recommended_inventory?id=IvViysJTjUGmTcP20P7GflE26') ,true);
+    dd($unitArrayc2c);
 });
