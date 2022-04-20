@@ -2,7 +2,7 @@
 
 <div class="vehicle-content container">
     <div class="custom-vehicle-wrap">
-        @include('inventory.vehicle_record_start_aproval')
+        
         <div class="custom-vehicle-details">
             <div class="vehicle-details">
                 <div class="custom-nav-tabs">

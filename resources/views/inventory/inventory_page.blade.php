@@ -17,16 +17,7 @@
                 <h1 class="cl-page-title"><span>{{ __($title_dealer) }}</span></h1>
                 <div class="vehicle-content paddlb40 container">
                     <div class="custom-inventory-wrap">
-                        <div class="custom-sidebar">
-                            <div class="filters">
-                                @include('inventory.real_search_form')
-                                <br><br>
-                                <iframe src="https://ctcautogroup.neoverify.com/quick_lead" width="100%" height="700" style="border:none;"></iframe>
-                            </div>
-                        </div>
-
                         <div class="custom-vehicle-details">
-
                             @if ($errors->any())
                                 <div class="alert alert-danger bg-red-500">
                                     <ul>
@@ -42,6 +33,11 @@
                             @else
                             <h1 class="cl-page-title"><span>{{ __('No Records Found') }}</span></h1>
                             @endif
+                        </div>
+                        <div class="custom-sidebar">
+                            <div class="filters">
+                                @include('inventory.real_search_form')
+                            </div>
                         </div>
                     </div>
                 </div>
