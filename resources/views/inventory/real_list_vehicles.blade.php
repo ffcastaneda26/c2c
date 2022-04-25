@@ -29,7 +29,7 @@
                     </div>
                     <div class="vehicle-stocks">STOCK  {{  $vehicle->stock }}
                     </div>
-                    <a href="http://ctcautogroup.com/FastPass" class="price">{{ __("Unlock Price") }}</a>
+                    <a href="https://ctcautogroup.com/fastpass/#today" class="price">{{ __("Unlock Price") }}</a>
                 </div>
             </div>
         </div>
