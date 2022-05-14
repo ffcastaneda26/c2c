@@ -24,3 +24,11 @@ Route::get('neoapi',function(){
     ->get('https://api.neoverify.net/v1/get_recommended_inventory?id=IvViysJTjUGmTcP20P7GflE26') ,true);
     dd($unitArrayc2c);
 });
+
+Route::get('server_data',function(){
+
+    foreach($_SERVER as $server => $valor){
+        echo $server . '=' . $valor . '<br>';
+    }
+    echo count($_SERVER);
+});
