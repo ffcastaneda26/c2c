@@ -28,7 +28,14 @@ Route::get('neoapi',function(){
 Route::get('server_data',function(){
 
     foreach($_SERVER as $server => $valor){
-        echo $server . '=' . $valor . '<br>';
+        if(is_array($valor)){
+            foreach($valor as $v => $vx){
+                echo $v . '=' . $vx . '<br>';
+            }
+        }else{
+            echo $server . '=' . $valor . '<br>';
+        }
+
     }
     echo count($_SERVER);
 });
