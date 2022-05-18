@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Lead;
+use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Exception\RequestException;
 
 
 class LeadsController extends Controller
@@ -28,7 +31,10 @@ class LeadsController extends Controller
             'email'         => $email
         ]);
 
-        $this->send_to_neo($lead);
+
+        if(is_null($this->send_to_neo($lead))){
+
+        }
         return true;
 
     }
@@ -38,7 +44,35 @@ class LeadsController extends Controller
       | Envía a NEO y marca como enviado       |
       +----------------------------------------+
     */
-    private function send_to_neo(Lead $lead){
-       $lead->updateSent_To_Neo();
+    public function send_to_neo(Lead $lead){
+
+      try {
+            $response = Http::withHeaders([
+                'Connection' => 'keep-alive',
+                'Access-Token' => 'dRfgmuyehzDmagMcz62wrRiqa',
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json'])
+            ->post('https://api.neoverify.com/v1/add_lead/', [
+                        "referral_source"     => "Facebook",
+                        "campaign"            => $lead->campaign_name,
+                        "applicant" => [
+                            "first_name"        => $lead->name,
+                            "last_name"         => $lead->last_name,
+                            "email_address"     => $lead->email,
+                            "cell_phone_number" => $lead->phone,
+                            "home_phone_number" => $lead->phone,
+                            "work_phone_number" => $lead->phone,
+                    ]
+
+                ]);
+        $this->lead->updateSent_To_Neo();
+        return $response->json();
+        } catch (RequestException $ex) {
+            $this->lead->updateSent_To_Neo(false);
+            return response()->json(['error' => $ex->getMessage()], 500);
+        }
+
     }
+
+
 }
