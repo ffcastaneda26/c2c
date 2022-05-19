@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FtpController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\LeadsController;
 use App\Models\Inventory;
 
 /*
@@ -77,6 +78,8 @@ Route::get('inventory_ftp_inventory', [FtpController::class, 'inventory_ftp_inve
 
 Route::get('inventory/{language}/{dealer_id}', [InventoryController::class, 'inventory'])->name('inventory');
 
+Route::get('add_lead', [LeadsController::class, 'add_lead'])->name('add_lead');
+Route::post('add_lead', [LeadsController::class, 'create_lead'])->name('create_lead');
 /** Rutas de prueba */
 require 'pruebas.php';
 

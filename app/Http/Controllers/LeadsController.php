@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Lead;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use GuzzleHttp\Exception\RequestException;
 
+use phpDocumentor\Reflection\Types\Null_;
+use GuzzleHttp\Exception\RequestException;
 
 class LeadsController extends Controller
 {
@@ -17,34 +19,41 @@ class LeadsController extends Controller
 
     public function receive_leads(){
 
-        $campaign_name  = isset($_POST['campaign_name'])    ? $_POST['campaign_name'] : null;
+        //$campaign_name  = isset($_POST['campaign_name'])    ? $_POST['campaign_name'] : null;
         $name           = isset($_POST['name'])             ? $_POST['name'] : null;
         $last_name      = isset($_POST['last_name'])        ? $_POST['last_name'] : null;
         $phone          = isset($_POST['phone'])            ? $_POST['phone'] : null;
         $email          = isset($_POST['email'])            ? $_POST['email'] : null;
 
         $lead = Lead::create([
-            'campaign_name' => $campaign_name,
             'name'          => $name,
             'last_name'     => $last_name,
-            'phone'         => $phone,
-            'email'         => $email
+            'email'         => $email,
+            'phone'         => $phone
         ]);
+        // $lead = Lead::create([
+        //     //'campaign_name' => $campaign_name,
+        //     'name'          => $name,
+        //     'last_name'     => $last_name,
+        //     'phone'         => $phone,
+        //     'email'         => $email
+        // ]);
+        return $lead;
 
-
-        if(is_null($this->send_to_neo($lead))){
-
-        }
+        //$this->send_to_neo($lead);
         return true;
 
     }
+
+
+
 
 
     /*+----------------------------------------+
       | Envía a NEO y marca como enviado       |
       +----------------------------------------+
     */
-    public function send_to_neo(Lead $lead){
+    public function send_to_neo(Lead $lead=Null){
 
       try {
             $response = Http::withHeaders([
@@ -65,7 +74,7 @@ class LeadsController extends Controller
                     ]
 
                 ]);
-        $this->lead->updateSent_To_Neo();
+        $lead->updateSent_To_Neo();
         return $response->json();
         } catch (RequestException $ex) {
             $this->lead->updateSent_To_Neo(false);
@@ -75,4 +84,38 @@ class LeadsController extends Controller
     }
 
 
+    public function get_receive_leads(){
+        $name           = isset($_GET['name'])             ? $_GET['name'] : null;
+        $last_name      = isset($_GET['last_name'])        ? $_GET['last_name'] : null;
+        $phone          = isset($_GET['phone'])            ? $_GET['phone'] : null;
+        $email          = isset($_GET['email'])            ? $_GET['email'] : null;
+
+        $lead = Lead::create([
+            'name'          => $name,
+            'last_name'     => $last_name,
+            'email'         => $email,
+            'phone'         => $phone
+        ]);
+        return $lead;
+
+    }
+
+    public function add_lead(){
+        return view('leads.form');
+    }
+
+    public function create_lead(Request $request){
+
+        $lead = Lead::create([
+            'name'          => $request->name,
+            'last_name'     => $request->last_name,
+            'email'         => $request->email,
+            'phone'         => $request->phone
+        ]);
+
+        if($lead){
+           dd($this->send_to_neo($lead));
+        }
+
+    }
 }
