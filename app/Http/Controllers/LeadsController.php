@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Lead;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Exception\RequestException;
 
 class LeadsController extends Controller
@@ -70,6 +71,19 @@ class LeadsController extends Controller
 
     }
 
+    /*+----------------------------------------+
+      | Consulta de Leads x Fecha              |
+      +----------------------------------------+
+    */
 
+    public function query_leads(){
+        $records =DB::table('leads')
+        ->select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as total'))
+        ->groupBy('date')
+        ->get();
+        return view('leads.form', [
+                'records' => $records,
+        ]);
+    }
 
 }

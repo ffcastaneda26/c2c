@@ -21,88 +21,45 @@
         </style>
     </head>
     <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+        <div class="relative flex items-top justify-center  bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+            <div><h1>{{__('Leads Charged By Day')}}</h1></div>
+        </div>
+
+        <hr>
+        <div class="relative flex items-top justify-center  sm:items-center py-4 sm:pt-0">
+            <div class="card-content">
+                <div class="card-content">
+
+                        <table class="table mb-5" border="1">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="px-4 py-1">{{__("Date")}}</th>
+                                    <th class="px-4 py-1">{{__("Total")}}</th>
+                                 </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($records as $record )
+
+                                <tr class=" border-2">
+                                    <td class="border px-4 py-1 leading-relaxed sm:text-base md:text-xl xl:text-base text-gray-600">
+                                        {{date(" F - d -  Y", strtotime($record->date))}}
+                                    </td>
+
+                                    <td align="right" class="px-4 py-1 sm:text-base md:text-xl xl:text-base text-right">
+                                        {{$record->total}}
+                                    </td>
+
+                                </tr>
+
+                                @endforeach
+                            </tbody>
 
 
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                <div class="text-2xl text-center font-bold">
-                    <h1>AGREGAR UN LEAD</h1>
+                        </table>
+
                 </div>
-
-                <form class="w-full max-w-lg" action="{{route('add_lead')}}" method="post">
-                    <div class="flex flex-wrap -mx-3 mb-6">
-                        @csrf
-                        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="name">
-                         Nombre
-                        </label>
-                        <input type="text"
-                                name="name"
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                id="name"
-                                required
-                                placeholder="Nombre"
-
-                        >
-                        <br><br>
-
-                      </div>
-
-
-                      <div class="w-full md:w-1/2 px-3">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="last_name">
-                          Apellido
-                        </label>
-                        <input type="text"
-                                name="last_name"
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="last_name"
-                                placeholder="Apellido"
-                                required
-
-                        >
-                      </div>
-
-                    </div>
-
-                    <div class="flex flex-wrap -mx-3 mb-6">
-                      <div class="w-full px-3">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="email">
-                          Correo
-                        </label>
-                        <input  type="email"
-                                name="email"
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="email"
-                                required
-
-                        >
-                      </div>
-
-                      <div class="w-full px-3">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="phone">
-                          Teléfono
-                        </label>
-                        <input  type="text"
-                                name="phone"
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="phone"
-                                required
-
-                        >
-                      </div>
-
-
-                    </div>
-                    <div class="float-right">
-                        <button type="submit">{{ __('Create') }}</button>
-                    </div>
-                  </form>
-
-
-
-
             </div>
         </div>
+
     </body>
 </html>

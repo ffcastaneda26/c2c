@@ -78,8 +78,9 @@ Route::get('inventory_ftp_inventory', [FtpController::class, 'inventory_ftp_inve
 
 Route::get('inventory/{language}/{dealer_id}', [InventoryController::class, 'inventory'])->name('inventory');
 
-Route::get('add_lead', [LeadsController::class, 'add_lead'])->name('add_lead');
-Route::post('add_lead', [LeadsController::class, 'create_lead'])->name('create_lead');
+
+
+Route::get('query_leads', [LeadsController::class, 'query_leads'])->name('query_leads');
 /** Rutas de prueba */
 require 'pruebas.php';
 
