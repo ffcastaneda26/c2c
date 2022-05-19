@@ -23,7 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('inventory/{stock}', [InventoryController::class, 'read_stock'])->name('read_stock');
 
 Route::post('read_leads', [LeadsController::class, 'receive_leads'])->name('read_leads');
-Route::get('read_leads', [LeadsController::class, 'get_receive_leads'])->name('read_leads');
 
-Route::get('send_to_neo', [LeadsController::class, 'send_to_neo'])->name('send_to_neo');
 

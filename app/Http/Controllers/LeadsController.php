@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Lead;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
-use phpDocumentor\Reflection\Types\Null_;
 use GuzzleHttp\Exception\RequestException;
 
 class LeadsController extends Controller
@@ -37,10 +35,6 @@ class LeadsController extends Controller
         return $this->send_to_neo($lead);
 
     }
-
-
-
-
 
     /*+----------------------------------------+
       | Envía a NEO y marca como enviado       |
@@ -77,38 +71,5 @@ class LeadsController extends Controller
     }
 
 
-    public function get_receive_leads(){
-        $name           = isset($_GET['name'])             ? $_GET['name'] : null;
-        $last_name      = isset($_GET['last_name'])        ? $_GET['last_name'] : null;
-        $phone          = isset($_GET['phone'])            ? $_GET['phone'] : null;
-        $email          = isset($_GET['email'])            ? $_GET['email'] : null;
 
-        $lead = Lead::create([
-            'name'          => $name,
-            'last_name'     => $last_name,
-            'email'         => $email,
-            'phone'         => $phone
-        ]);
-        return $lead;
-
-    }
-
-    public function add_lead(){
-        return view('leads.form');
-    }
-
-    public function create_lead(Request $request){
-
-        $lead = Lead::create([
-            'name'          => $request->name,
-            'last_name'     => $request->last_name,
-            'email'         => $request->email,
-            'phone'         => $request->phone
-        ]);
-
-        if($lead){
-           dd($this->send_to_neo($lead));
-        }
-
-    }
 }
