@@ -19,29 +19,22 @@ class LeadsController extends Controller
 
     public function receive_leads(){
 
-        //$campaign_name  = isset($_POST['campaign_name'])    ? $_POST['campaign_name'] : null;
+        $campaign_name  = isset($_POST['campaign_name'])    ? $_POST['campaign_name'] : null;
         $name           = isset($_POST['name'])             ? $_POST['name'] : null;
         $last_name      = isset($_POST['last_name'])        ? $_POST['last_name'] : null;
         $phone          = isset($_POST['phone'])            ? $_POST['phone'] : null;
         $email          = isset($_POST['email'])            ? $_POST['email'] : null;
 
+
         $lead = Lead::create([
+            'campaign_name' => $campaign_name,
             'name'          => $name,
             'last_name'     => $last_name,
             'email'         => $email,
             'phone'         => $phone
         ]);
-        // $lead = Lead::create([
-        //     //'campaign_name' => $campaign_name,
-        //     'name'          => $name,
-        //     'last_name'     => $last_name,
-        //     'phone'         => $phone,
-        //     'email'         => $email
-        // ]);
-        return $lead;
 
-        //$this->send_to_neo($lead);
-        return true;
+        return $this->send_to_neo($lead);
 
     }
 
@@ -62,7 +55,7 @@ class LeadsController extends Controller
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json'])
             ->post('https://api.neoverify.com/v1/add_lead/', [
-                        "referral_source"     => "Facebook",
+                        "referral_source"     => "Ahava",
                         "campaign"            => $lead->campaign_name,
                         "applicant" => [
                             "first_name"        => $lead->name,
