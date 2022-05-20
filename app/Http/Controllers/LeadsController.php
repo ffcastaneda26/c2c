@@ -24,6 +24,9 @@ class LeadsController extends Controller
         $phone          = isset($_POST['phone'])            ? $_POST['phone'] : null;
         $email          = isset($_POST['email'])            ? $_POST['email'] : null;
 
+        if($campaign_name == '12093493'){
+            $campaign_name = 'landing_Ads_0Interest';
+        }
 
         $lead = Lead::create([
             'campaign_name' => $campaign_name,
@@ -50,9 +53,9 @@ class LeadsController extends Controller
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json'])
             ->post('https://api.neoverify.com/v1/add_lead/', [
-                        "referral_source"     => "Ahava",
-                        "campaign"            => $lead->campaign_name,
-                        "applicant" => [
+                        "advertising_source"    => $lead->campaign_name,
+                        "referral_source"       => "Ahava",
+                         "applicant" => [
                             "first_name"        => $lead->name,
                             "last_name"         => $lead->last_name,
                             "email_address"     => $lead->email,
@@ -87,7 +90,7 @@ class LeadsController extends Controller
     }
 
     public function test_api(){
-        return $_POST;            
+        return $_POST;
     }
 
 }
