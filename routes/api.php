@@ -24,4 +24,4 @@ Route::get('inventory/{stock}', [InventoryController::class, 'read_stock'])->nam
 
 Route::post('read_leads', [LeadsController::class, 'receive_leads'])->name('read_leads');
 
-
+Route::post('test_api', [LeadsController::class, 'test_api'])->name('test_api');

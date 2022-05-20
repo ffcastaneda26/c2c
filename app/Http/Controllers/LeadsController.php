@@ -86,4 +86,8 @@ class LeadsController extends Controller
         ]);
     }
 
+    public function test_api(){
+        return $_POST;            
+    }
+
 }
