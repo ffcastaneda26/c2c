@@ -13,7 +13,7 @@
                 @endforeach
             @endif
 
-        <a class="prev cursor-pointer">&#10094;</a>
-        <a class="next cursor-pointer">&#10095;</a>
+        <a class="prev cursor-pointer">&#10094;Anterior</a>
+        <a class="next cursor-pointer ml-15">Siguiente&#10095;</a>
     </div>
 </div>
