@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\LeadsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('inventory/{stock}', [InventoryController::class, 'read_stock'])->name('read_stock');
+
+Route::post('read_leads', [LeadsController::class, 'receive_leads'])->name('read_leads');
+
+Route::post('test_api', [LeadsController::class, 'test_api'])->name('test_api');

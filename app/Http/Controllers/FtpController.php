@@ -37,6 +37,7 @@ class FtpController extends Controller
                 }
                 $this->copy_temporal_to_definitive_inventory();
                 TemporaryInventory::truncate();
+                return "El inventario en Coast To Coast ha sido actualizado";
                // $this->ftpconnection->ftp_close();
             } catch (Throwable $e) {
                 logger($e);
