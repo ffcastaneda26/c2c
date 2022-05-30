@@ -14,9 +14,12 @@ class Inventories extends Component
     public $makes;
     public $search_makes;
     public $make = [];
-    public $inventario_general;
+    public $vehicles;
 
-    public function mount(){
+    protected $listeners = ['mount'];
+
+    public function mount($vehicle_id=null){
+        $this->vehicles = Inventory::where('id', $vehicle_id)->get();
     }
 
     public function render()
@@ -28,5 +31,4 @@ class Inventories extends Component
         $sql = 'SELECT DISTINCT make,count(*) as total FROM inventories WHERE make IS NOT NULL GROUP BY make ORDER BY make';
         $this->makes=DB::select($sql);
     }
-
 }

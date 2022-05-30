@@ -8,12 +8,18 @@
     data-dm-vehicle-vin="{{ $vehicle->vin }}">
 </script>
 <div class="vehicle-details"></div>
-
         <div class="vehicle">
+            <input type="hidden"
+            id="vehicle-id"
+            value="{{$vehicle->id}}"
+            hidden>
             <div class="gallery-block" style="width: 100%; float: left; margin-right: -100%; position: relative; opacity: 1; display: block; transition: opacity 0.5s ease 0s; z-index: 2;">
                 <a href="{{url('inventory/show/'. App::currentLocale() . '/' . $vehicle->id) }}">
                     @if(explode(",", $vehicle->images)[0])
-                        <img  src="{{explode(",", $vehicle->images)[0] }}" onerror=this.src="{{ asset('images/default.jpeg') }}">
+                        <img  src="{{explode(",", $vehicle->images)[0] }}"
+                        onerror=this.src="{{ asset('images/default.jpeg') }}"
+                        onmouseover="getvehicle({{$vehicle->id}})"
+                        >
                     @else
                         <img src="{{ asset('images/default.jpeg') }}" alt="">
                     @endif
@@ -48,3 +54,9 @@
 <div class="pagination">
     {{ $vehicles->appends(request()->input())->links('vendor.pagination.tailwind') }}
 </div>
+
+<script>
+    function getvehicle(vehicle_id) {
+        Livewire.emit('mount', vehicle_id)
+    }
+</script>

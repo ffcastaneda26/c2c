@@ -77,6 +77,7 @@ Route::get('inventory_ftp_inventory', [FtpController::class, 'inventory_ftp_inve
 
 Route::get('inventory/{language}/{dealer_id}', [InventoryController::class, 'inventory'])->name('inventory');
 
+Route::get('show/{vehicle_id?}', Inventories::class)->name('show_slide');
 /** Rutas de prueba */
 require 'pruebas.php';
 

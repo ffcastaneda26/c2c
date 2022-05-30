@@ -175,4 +175,6 @@ src="https://www.facebook.com/tr?id=468102071256313&ev=PageView&noscript=1" />
     display: none !important;
 }		</style>
 		<noscript><style> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>
+
+    @livewireStyles
 </head>
