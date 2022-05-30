@@ -170,12 +170,13 @@ src="https://www.facebook.com/tr?id=468102071256313&ev=PageView&noscript=1" />
 <link rel="icon" href="https://149646797.v2.pressablecdn.com/wp-content/uploads/2021/08/cropped-Thumbnail-192x192.jpg" sizes="192x192" />
 <link rel="apple-touch-icon" href="https://149646797.v2.pressablecdn.com/wp-content/uploads/2021/08/cropped-Thumbnail-180x180.jpg" />
 <meta name="msapplication-TileImage" content="https://149646797.v2.pressablecdn.com/wp-content/uploads/2021/08/cropped-Thumbnail-270x270.jpg" />
-		<style type="text/css" id="wp-custom-css">
+<style type="text/css" id="wp-custom-css">
 			ul.buttons.sf-menu {
     display: none !important;
 }		</style>
 		<noscript><style> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>
-    @livewireStyles
+
+        @livewireStyles
   </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
@@ -204,57 +205,12 @@ src="https://www.facebook.com/tr?id=468102071256313&ev=PageView&noscript=1" />
         @stack('scripts')
     </body>
     <style>
-      /* Slideshow container */
-  .slideshow-container {
-      max-width: 200px;
-      position: relative;
-      margin: auto;
-    }
-  </style>
-    <script>
-      let index = 0,
-      sliders,
-      timer,
-      next,
-      prev;
-    document.addEventListener('DOMContentLoaded', function() {
-      // Obtener elementos solo una vez y ocultarlos
-      slides = document.querySelectorAll(".mySlides");
-      for(let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-      }
-      // Obtener botones y asignar evento
-      document.querySelector('.prev').addEventListener('click', () => showSlides(-1));
-      document.querySelector('.next').addEventListener('click', () => showSlides(1));
-      // Asignar evento para funcionar con teclado
-      document.addEventListener('keyup', (e) => {
-        if(e.keyCode == 37) {
-          // Tecla izquierda
-          showSlides(-1);
-        } else if(e.keyCode == 39) {
-          // Tecla derecha
-          showSlides(1);
+        /* Slideshow container */
+    .slideshow-container {
+        max-width: 200px;
+        position: relative;
+        margin: auto;
         }
-      });
-      showSlides(0);
-    });
-    
-    function showSlides(n) {
-      // Cancelar temporizador para evitar comportamientos extraños
-      clearTimeout(timer);
-      // Ocultar elemento actual
-      slides[index].style.display = 'none';
-      index += n;
-      if (index >= slides.length) {
-        // Ir al inicio
-        index = 0;
-      } else if(index < 0) {
-        // Ir al final
-        index = slides.length - 1;
-      }
-      // Mostrar elemento
-      slides[index].style.display = "block";
-      timer = setTimeout(showSlides, 4000, 1);
-    }
-  </script>
+  </style>
+    <script src="{{asset('js/myslides.js')}}"></script>
 </html>
