@@ -2,6 +2,7 @@
 use App\Models\Inventory;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FtpController;
+use App\Http\Livewire\SliderController;
 
 Route::get('ftp_inventory',function(){
 
@@ -39,3 +40,6 @@ Route::get('server_data',function(){
     }
     echo count($_SERVER);
 });
+
+Route::get('slider/{vehicle_id?}',SliderController::class)->name('slider');
+
