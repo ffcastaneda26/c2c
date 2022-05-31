@@ -27,7 +27,6 @@
                 </div>
             </div>  --}}
 
-
             <div class="gallery-block" style="width: 100%; float: left; margin-right: -100%; position: relative; opacity: 1; display: block; transition: opacity 0.5s ease 0s; z-index: 2;">
                 <a href="{{url('inventory/show/'. App::currentLocale() . '/' . $vehicle->id) }}">
                     @if(explode(",", $vehicle->images)[0])
@@ -70,8 +69,6 @@
     {{ $vehicles->appends(request()->input())->links('vendor.pagination.tailwind') }}
 </div>
 
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script>
     $(document).ready(function(){
         $('.carousel').carousel();
@@ -81,5 +78,5 @@
         Livewire.emit('mount', vehicle_id)
     }
 </script>
-
-
+<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+<script src="https://api.dealermade-next.com/v4/system-services/dm-next-hd-viewer-loader" async=""></script>

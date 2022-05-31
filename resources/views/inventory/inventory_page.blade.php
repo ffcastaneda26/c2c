@@ -26,7 +26,48 @@
                                     <iframe src="https://ctcautogroup.neoverify.com/quick_lead" width="100%" height="700" style="border:none;"></iframe>
                                 </div>
                             </div>
-                           
+                            <div class="swiper mySwiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        @foreach ($vehicles as $vehicle )
+                                            @if ( $loop->iteration == 1 )
+                                                @if($vehicle->images)
+                                                    @foreach ( explode(",", $vehicle->images) as $image_url)
+                                                        @if ( $loop->iteration == 1 )
+                                                            <div class="swiper-slide">
+                                                                <img src="{{ $image_url }}" alt="Foto"/>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                    <div class="swiper-slide">
+                                        @foreach ($vehicles as $vehicle )
+                                            @if ( $loop->iteration == 2 )
+                                                @if($vehicle->images)
+                                                    @foreach ( explode(",", $vehicle->images) as $image_url)
+                                                        @if ( $loop->iteration == 2 )
+                                                            <div class="swiper-slide">
+                                                                <img src="{{ $image_url }}" alt="Foto"/>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                    <div class="swiper-slide">
+                                    <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                    <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+                                    </div>
+                                </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            </div>
                             <div class="custom-vehicle-details">
                                 @if ($errors->any())
                                     <div class="alert alert-danger bg-red-500">
