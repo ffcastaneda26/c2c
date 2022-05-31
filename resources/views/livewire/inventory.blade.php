@@ -1,19 +1,32 @@
-<div>
-
-    <div class="slideshow-container" id="slide_image">
-
-            @if($vehicle_show && $vehicle_show->images)
-                @foreach ( explode(",", $vehicle_show->images) as $image_url)
-                    {{-- @if( $loop->first or $loop->iteration  <= 3 ) --}}
-                        <div class="mySlides fade">
-                            <img src="{{ $image_url }}"/>
-                            <div class="text">{{$loop->iteration}}</div>
-                        </div>
-                    {{-- @endif --}}
-                @endforeach
-            @endif
-
-        <a class="prev cursor-pointer">&#10094;Anterior</a>
-        <a class="next cursor-pointer ml-15">Siguiente&#10095;</a>
+{{--  <div>
+    <div class="gallery-block">
+        <div class="container">
+            <div class="flex-gallery">
+                <ul class="slides">
+                    @foreach ($vehicles as $vehicle )
+                        @if($vehicle->images)
+                            @foreach ( explode(",", $vehicle->images) as $image_url)
+                                @if( $loop->iteration > 3 ) @break @endif
+                                    <li><img src="{{ $image_url }}"/></li>
+                                    <label class="text">{{$loop->iteration}}</label>
+                            @endforeach
+                        @endif
+                    @endforeach
+                </ul>
+            </div>
+        </div>
     </div>
+</div>  --}}
+<div>
+    @foreach ($vehicles as $vehicle )
+        @if($vehicle->images)
+            @foreach ( explode(",", $vehicle->images) as $image_url)
+                @if( $loop->iteration > 3 ) @break @endif
+                <div class="swiper-slide2">
+                    <img src="{{ $image_url }}"/>
+                    <label class="font-bold">{{$loop->iteration}}</label>
+                </div>
+            @endforeach
+        @endif
+    @endforeach
 </div>

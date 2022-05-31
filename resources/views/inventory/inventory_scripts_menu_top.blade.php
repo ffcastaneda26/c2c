@@ -20,6 +20,3 @@
 
     })(window, document);
   </script>
-    {{-- <a href="#ajax-content-wrap" class="nectar-skip-to-content">
-        Skip to main content
-    </a> --}}

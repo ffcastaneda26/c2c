@@ -9,25 +9,8 @@
 <link rel="alternate" type="application/rss+xml" title="CTC Auto Group &raquo; Feed" href="https://ctcautogroup.com/feed/" />
 <link rel="alternate" type="application/rss+xml" title="CTC Auto Group &raquo; Comments Feed" href="https://ctcautogroup.com/comments/feed/" />
 <link rel="alternate" type="application/rss+xml" title="CTC Auto Group &raquo; Texas Inventory Inventory Feed" href="https://ctcautogroup.com/inventory/texas-inventory/feed/" />
-		<script type="text/javascript">
-			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/ctcautogroup.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.8.2"}};
-			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
-		</script>
-		<style type="text/css">
-img.wp-smiley,
-img.emoji {
-	display: inline !important;
-	border: none !important;
-	box-shadow: none !important;
-	height: 1em !important;
-	width: 1em !important;
-	margin: 0 .07em !important;
-	vertical-align: -0.1em !important;
-	background: none !important;
-	padding: 0 !important;
-}
-</style>
-	<link rel='stylesheet' id='wp-block-library-css'  href='https://149646797.v2.pressablecdn.com/wp-includes/css/dist/block-library/style.min.css?ver=5.8.2' type='text/css' media='all' />
+
+<link rel='stylesheet' id='wp-block-library-css'  href='https://149646797.v2.pressablecdn.com/wp-includes/css/dist/block-library/style.min.css?ver=5.8.2' type='text/css' media='all' />
 <link rel='stylesheet' id='edsanimate-animo-css-css'  href='https://149646797.v2.pressablecdn.com/wp-content/plugins/animate-it/assets/css/animate-animo.css?ver=5.8.2' type='text/css' media='all' />
 <link rel='stylesheet' id='cl_styles-css'  href='https://149646797.v2.pressablecdn.com/wp-content/plugins/car-listings/assets/css/styles.css?ver=5.8.2' type='text/css' media='all' />
 <link rel='stylesheet' id='contact-form-7-css'  href='https://149646797.v2.pressablecdn.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.5.2' type='text/css' media='all' />
@@ -66,12 +49,7 @@ img.emoji {
 </style>
 <!-- CDN Tailwind Css -->
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-<link rel='stylesheet' id='trp-floater-language-switcher-style-css'  href='https://149646797.v2.pressablecdn.com/wp-content/plugins/translatepress-multilingual/assets/css/trp-floater-language-switcher.css?ver=2.1.5' type='text/css' media='all' />
-<link rel='stylesheet' id='trp-language-switcher-style-css'  href='https://149646797.v2.pressablecdn.com/wp-content/plugins/translatepress-multilingual/assets/css/trp-language-switcher.css?ver=2.1.5' type='text/css' media='all' />
-<link rel='stylesheet' id='font-awesome-css'  href='https://149646797.v2.pressablecdn.com/wp-content/themes/salient/css/font-awesome-legacy.min.css?ver=4.7.1' type='text/css' media='all' />
-<link rel='stylesheet' id='salient-grid-system-css'  href='https://149646797.v2.pressablecdn.com/wp-content/themes/salient/css/grid-system.css?ver=13.0.3' type='text/css' media='all' />
-<link rel='stylesheet' id='main-styles-css'  href='https://149646797.v2.pressablecdn.com/wp-content/themes/salient/css/style.css?ver=13.0.3' type='text/css' media='all' />
-<link rel='stylesheet' id='nectar-header-secondary-nav-css'  href='https://149646797.v2.pressablecdn.com/wp-content/themes/salient/css/header/header-secondary-nav.css?ver=13.0.3' type='text/css' media='all' />
+
 <link rel='stylesheet' id='nectar_default_font_open_sans-css'  href='https://fonts.googleapis.com/css?family=Open+Sans%3A300%2C400%2C600%2C700&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
 <link rel='stylesheet' id='nectar-blog-auto-masonry-meta-overlaid-spaced-css'  href='https://149646797.v2.pressablecdn.com/wp-content/themes/salient/css/blog/auto-masonry-meta-overlaid-spaced.css?ver=13.0.3' type='text/css' media='all' />
 <link rel='stylesheet' id='responsive-css'  href='https://149646797.v2.pressablecdn.com/wp-content/themes/salient/css/responsive.css?ver=13.0.3' type='text/css' media='all' />
@@ -93,8 +71,6 @@ var settings = {"ajaxurl":"https:\/\/ctcautogroup.com\/wp-admin\/admin-ajax.php"
 <link rel="https://api.w.org/" href="https://ctcautogroup.com/wp-json/" /><link rel="alternate" type="application/json" href="https://ctcautogroup.com/wp-json/wp/v2/inventory/4" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://ctcautogroup.com/xmlrpc.php?rsd" />
 <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://ctcautogroup.com/wp-includes/wlwmanifest.xml" />
 
-<!-- Chat -->
-{{-- <script defer src="https://connect.podium.com/widget.js#API_TOKEN=3e209109-3e83-411d-b270-ec27a6ef5ff3" id="podium-widget" data-api-token="3e209109-3e83-411d-b270-ec27a6ef5ff3"></script> --}}
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YTBQVYGKW6"></script>
@@ -170,10 +146,43 @@ src="https://www.facebook.com/tr?id=468102071256313&ev=PageView&noscript=1" />
 <link rel="icon" href="https://149646797.v2.pressablecdn.com/wp-content/uploads/2021/08/cropped-Thumbnail-192x192.jpg" sizes="192x192" />
 <link rel="apple-touch-icon" href="https://149646797.v2.pressablecdn.com/wp-content/uploads/2021/08/cropped-Thumbnail-180x180.jpg" />
 <meta name="msapplication-TileImage" content="https://149646797.v2.pressablecdn.com/wp-content/uploads/2021/08/cropped-Thumbnail-270x270.jpg" />
+
+{{--  Link para Slide  --}}
+<link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+
 <style type="text/css" id="wp-custom-css">
-			ul.buttons.sf-menu {
+	ul.buttons.sf-menu {
     display: none !important;
-}		</style>
+    }
+    .swiper {
+        width: 50%;
+        height: 50%;
+    }
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+    .swiper-slide img {
+        display: block;
+        width: 90%;
+        height: 90%;
+        object-fit: cover;
+    }
+    </style>
 		<noscript><style> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>
 
         @livewireStyles
@@ -203,14 +212,28 @@ src="https://www.facebook.com/tr?id=468102071256313&ev=PageView&noscript=1" />
 
         @livewireScripts
         @stack('scripts')
-    </body>
-    <style>
-        /* Slideshow container */
-    .slideshow-container {
-        max-width: 200px;
-        position: relative;
-        margin: auto;
-        }
-  </style>
-    <script src="{{asset('js/myslides.js')}}"></script>
+<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+<script src="https://api.dealermade-next.com/v4/system-services/dm-next-hd-viewer-loader" async=""></script>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+        },
+        pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        },
+        navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+        },
+    });
+</script>
+</body>
+
 </html>

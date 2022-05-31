@@ -15,93 +15,122 @@
 
         <div class="ocm-effect-wrap mt-4">
             <div class="ocm-effect-wrap-inner">
-            <div id="ajax-content-wrap">
-                <h1 class="cl-page-title"><span>{{ __($title_dealer) }}</span></h1>
-                <div class="vehicle-content paddlb40 container">
-                    <div class="custom-inventory-wrap">
-                        <div class="custom-sidebar">
-                            <div class="filters">
-                                @include('inventory.real_search_form')
-                                <br><br>
-                                <iframe src="https://ctcautogroup.neoverify.com/quick_lead" width="100%" height="700" style="border:none;"></iframe>
-                            </div>
-                        </div>
-                        <div class="custom-vehicle-details">
-                            @if ($errors->any())
-                                <div class="alert alert-danger bg-red-500">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li class="text-lg text-black">{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
+                <div id="ajax-content-wrap">
+                    <h1 class="cl-page-title"><span>{{ __($title_dealer) }}</span></h1>
+                    <div class="vehicle-content paddlb40 container">
+                        <div class="custom-inventory-wrap">
+                            <div class="custom-sidebar">
+                                <div class="filters">
+                                    @include('inventory.real_search_form')
+                                    <br><br>
+                                    <iframe src="https://ctcautogroup.neoverify.com/quick_lead" width="100%" height="700" style="border:none;"></iframe>
                                 </div>
-                            @endif
-                            @if($vehicles->count())
-                                @include('inventory.real_list_vehicles')
-                            @else
-                            <h1 class="cl-page-title"><span>{{ __('No Records Found') }}</span></h1>
-                            @endif
-                        </div>
-                        <div class="justify-left items-end mt-20">
-                          @livewire('inventories')
+                            </div>
+                            <div class="custom-vehicle-details">
+                                <div class="swiper mySwiper">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">uno
+                                        </div>
+                                        <div class="swiper-slide">dos
+                                        </div>
+                                        <div class="swiper-slide">tres
+                                        </div>
+                                    </div>
+                                    <div class="swiper-button-next"></div>
+                                    <div class="swiper-button-prev"></div>
+                                </div>
+                                @if ($errors->any())
+                                    <div class="alert alert-danger bg-red-500">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li class="text-lg text-black">{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                                @if($vehicles->count())
+                                    @include('inventory.real_list_vehicles')
+                                @else
+                                <h1 class="cl-page-title"><span>{{ __('No Records Found') }}</span></h1>
+                                @endif
+                            </div>
+                            <div class="absolute top-96 -right-96 rounded-lg h-96 w-96">
+                                <div class="swiper2 mySwiper">
+                                    <div class="swiper-wrapper">
+                                        @livewire('inventories')
+                                    </div>
+                                    <div class="swiper-button-next"></div>
+                                    <div class="swiper-button-prev"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            @livewireScripts
-        </body>
-        <style>
-            /* Slideshow container */
-        .slideshow-container {
-            max-width: 200px;
-            position: relative;
-            margin: auto;
-          }
+        </div>
+        <!-- Page Content -->
+        <main>
+            @if (isset($slot))
+                {{ $slot }}
+            @endif
+        </main>
+        @stack('modals')
+
+        @livewireScripts
+        @stack('scripts')
+    </body>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+    <style>
+        .swiper {
+            width: 30%;
+            height: 5%;
+        }
+        .swiper2 {
+            width: 30%;
+            height: 30%;
+        }
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+        .swiper-slide2 img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
         </style>
-        <script>
-            let index = 0,
-            sliders,
-            timer,
-            next,
-            prev;
-          document.addEventListener('DOMContentLoaded', function() {
-            // Obtener elementos solo una vez y ocultarlos
-            slides = document.getElementById("mySlides");
-            for(let i = 0; i < slides.length; i++) {
-              slides[i].style.display = "none";
-            }
-            // Obtener botones y asignar evento
-            document.querySelector('.prev').addEventListener('click', () => showSlides(-1));
-            document.querySelector('.next').addEventListener('click', () => showSlides(1));
-            // Asignar evento para funcionar con teclado
-            document.addEventListener('keyup', (e) => {
-              if(e.keyCode == 37) {
-                // Tecla izquierda
-                showSlides(-1);
-              } else if(e.keyCode == 39) {
-                // Tecla derecha
-                showSlides(1);
-              }
-            });
-            showSlides(0);
-          });
-          
-          function showSlides(n) {
-            // Cancelar temporizador para evitar comportamientos extraños
-            clearTimeout(timer);
-            // Ocultar elemento actual
-            slides[index].style.display = 'none';
-            index += n;
-            if (index >= slides.length) {
-              // Ir al inicio
-              index = 0;
-            } else if(index < 0) {
-              // Ir al final
-              index = slides.length - 1;
-            }
-            // Mostrar elemento
-            slides[index].style.display = "block";
-            timer = setTimeout(showSlides, 4000, 1);
-          }
-        </script>
+    </style>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script src="https://api.dealermade-next.com/v4/system-services/dm-next-hd-viewer-loader" async=""></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+    var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+    },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+    </script>
 </html>
