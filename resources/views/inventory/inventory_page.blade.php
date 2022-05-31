@@ -86,7 +86,7 @@
             height: 5%;
         }
         .swiper2 {
-            width: 30%;
+            width: 50%;
             height: 30%;
         }
         .swiper-slide {

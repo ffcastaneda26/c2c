@@ -18,13 +18,12 @@
     </div>
 </div>  --}}
 <div>
-    @foreach ($vehicles as $vehicle )
+    @foreach ($vehicle_show as $vehicle )
         @if($vehicle->images)
             @foreach ( explode(",", $vehicle->images) as $image_url)
                 @if( $loop->iteration > 3 ) @break @endif
                 <div class="swiper-slide2">
                     <img src="{{ $image_url }}"/>
-                    <label class="font-bold">{{$loop->iteration}}</label>
                 </div>
             @endforeach
         @endif
