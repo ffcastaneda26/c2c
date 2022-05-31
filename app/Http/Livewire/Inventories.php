@@ -15,11 +15,12 @@ class Inventories extends Component
     public $search_makes;
     public $make = [];
     public $vehicle_show;
-    public $vehicle_id;
+    public $vehicle_id = null;
 
+    protected $listeners = ['mount'];
 
-    public function mount(){
-        $this->vehicle_show = Inventory::where('id', $this->vehicle_id)->first();
+    public function mount($vehicle_id=null){
+        $this->vehicle_show = Inventory::where('id', $vehicle_id)->get();
     }
 
     public function render()

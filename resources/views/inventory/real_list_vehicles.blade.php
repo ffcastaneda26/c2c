@@ -1,13 +1,12 @@
-
 <div class="vehicle-listings">
     @foreach ($vehicles as $vehicle )
-    <script src="//dealermade.com/assets/media-layer/v2/dm.js"
-    data-dm-dealership-id="coast-to-coast-motors"
-    data-dm-insert-before-element-attribute="class"
-    data-dm-insert-before-element-attribute-value="vehicle-details"
-    data-dm-vehicle-vin="{{ $vehicle->vin }}">
-</script>
-<div class="vehicle-details"></div>
+        <script src="//dealermade.com/assets/media-layer/v2/dm.js"
+        data-dm-dealership-id="coast-to-coast-motors"
+        data-dm-insert-before-element-attribute="class"
+        data-dm-insert-before-element-attribute-value="vehicle-details"
+        data-dm-vehicle-vin="{{ $vehicle->vin }}">
+        </script>
+        <div class="vehicle-details"></div>
         <div class="vehicle">
             <input type="hidden"
             id="vehicle-id"
