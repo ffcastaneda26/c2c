@@ -26,19 +26,8 @@
                                     <iframe src="https://ctcautogroup.neoverify.com/quick_lead" width="100%" height="700" style="border:none;"></iframe>
                                 </div>
                             </div>
+                           
                             <div class="custom-vehicle-details">
-                                <div class="swiper mySwiper">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide">uno
-                                        </div>
-                                        <div class="swiper-slide">dos
-                                        </div>
-                                        <div class="swiper-slide">tres
-                                        </div>
-                                    </div>
-                                    <div class="swiper-button-next"></div>
-                                    <div class="swiper-button-prev"></div>
-                                </div>
                                 @if ($errors->any())
                                     <div class="alert alert-danger bg-red-500">
                                         <ul>

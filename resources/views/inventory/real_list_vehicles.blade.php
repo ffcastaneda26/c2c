@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-<link rel="stylesheet" href="{{asset('css/materialize_slider.css')}}">
+{{--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link rel="stylesheet" href="{{asset('css/materialize_slider.css')}}">  --}}
 
 <div class="vehicle-listings">
     @foreach ($vehicles as $vehicle )
@@ -17,7 +17,7 @@
             hidden>
 
             {{-- Dentro de este div intentaremos poner el slider --}}
-            <div class="text-center">
+          {{--    <div class="text-center">
                 <div class="carousel">
                     @foreach ( explode(",", $vehicle->images) as $image_url)
                         <div class="carousel-item">
@@ -25,7 +25,7 @@
                         </div>
                     @endforeach
                 </div>
-            </div>
+            </div>  --}}
 
 
             <div class="gallery-block" style="width: 100%; float: left; margin-right: -100%; position: relative; opacity: 1; display: block; transition: opacity 0.5s ease 0s; z-index: 2;">
