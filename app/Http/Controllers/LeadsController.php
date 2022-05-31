@@ -93,4 +93,22 @@ class LeadsController extends Controller
         return $_POST;
     }
 
+    /*+----------------------------------------+
+      | Envía a Neo Registros Pendientes       |
+      +----------------------------------------+
+    */
+
+    public function send_to_neo_pending_records(){
+        $leads = Lead::where('sent_to_neo','0')->get();
+        if($leads->count()){
+            foreach($leads as $lead){
+                $this->send_to_neo($lead);
+            }
+            return 'Se han enviado ' . $leads->count() . ' Registros a Neo';
+        }else{
+            return 'No hay Registros Pendientes de Enviar a Neo';
+        }
+
+    }
+
 }
