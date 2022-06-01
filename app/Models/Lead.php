@@ -11,10 +11,11 @@ class Lead extends Model
     protected $table = 'leads';
     protected $fillable =  [
         'campaign_name',
-        'last_name',
         'name',
-        'email',
+        'last_name',
         'phone',
+        'email',
+        'created_at',
         'sent_to_neo'
     ];
 
@@ -24,5 +25,8 @@ class Lead extends Model
         $this->save();
     }
 
-
+    // Los Leads que no se han enviado a neo
+    public function scopePendingSendToNeo($query) {
+        $query->where('sent_to_neo',0);
+    }
 }

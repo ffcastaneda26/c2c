@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
-
+use Throwable;
 use App\Models\Lead;
-use Illuminate\Support\Facades\DB;
+use App\Imports\LeadsImport;
 
+
+
+use App\Imports\InventoryImport;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Maatwebsite\Excel\Facades\Excel;
 use GuzzleHttp\Exception\RequestException;
 
 class LeadsController extends Controller
@@ -99,7 +104,8 @@ class LeadsController extends Controller
     */
 
     public function send_to_neo_pending_records(){
-        $leads = Lead::where('sent_to_neo','0')->get();
+        $leads = Lead::PendingSendToNeo('sent_to_neo','0')->get();
+
         if($leads->count()){
             foreach($leads as $lead){
                 $this->send_to_neo($lead);
@@ -111,4 +117,30 @@ class LeadsController extends Controller
 
     }
 
+    /*+----------------------------------------+
+      | Formulario para subir archivo Excel    |
+      +----------------------------------------+
+    */
+
+    public function leads_import_view(){
+        $records = Lead::PendingSendToNeo()->paginate(10);
+        return view('leads.leads_import',compact('records'));
+    }
+
+
+    public function leads_import_file(){
+
+        try {
+            Excel::import(new LeadsImport,request()->file('file'));
+
+
+            $records = Lead::PendingSendToNeo()->paginate(10);
+            return view('leads_import',compact('records'))->with('message',__('Leads have been Imported'));
+
+
+        } catch (Throwable $e) {
+            report($e);
+            return back()->with(['error',__('Leads were not Imported'),]);
+        }
+    }
 }

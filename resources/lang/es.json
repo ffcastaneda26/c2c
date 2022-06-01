@@ -1,4 +1,16 @@
 {
+
+    "Leads Import": "Importar Prospectos",
+    "Campaign Name": "Campaña",
+    "First Name": "Nombre",
+    "Last Name": "Apellido",
+    "Phone": "Teléfono",
+    "Created At": "Creado el",
+    "There are no leads to export to Neo":"No hay prospectos para exportar a Neo",
+    "Import More Leads": "Importar mas prospectos",
+    "Confirm Send To Neo": "Confirmar Envíar a Neo",
+    "Leads have been Imported": "Los prospectos han sido imortados",
+    "Leads were not imported": "Los prospectos no fueron importados",
     "Create": "Crear",
     "Date": "Fecha",
     "Leads Charged By Day": "Prospectos Cargados x Día",

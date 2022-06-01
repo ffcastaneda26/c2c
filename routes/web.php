@@ -78,6 +78,10 @@ Route::get('inventory_ftp_inventory', [FtpController::class, 'inventory_ftp_inve
 
 Route::get('inventory/{language}/{dealer_id}', [InventoryController::class, 'inventory'])->name('inventory');
 
+// Importar Leads desde Excel
+Route::get('leads_import', [LeadsController::class, 'leads_import_view'])->name('leads_import_view');
+Route::post('leads_import', [LeadsController::class, 'leads_import_file'])->name('leads_import_file');
+
 
 Route::get('show/{vehicle_id?}', Inventories::class)->name('show_slide');
 Route::get('query_leads', [LeadsController::class, 'query_leads'])->name('query_leads');

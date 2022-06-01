@@ -1,4 +1,3 @@
-@auth
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -28,6 +27,12 @@
                                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                         <x-jet-nav-link href="{{ route('inventoryimportExportView') }}" :active="request()->routeIs('inventoryimportExportView')">
                                             {{ __('Import Inventory') }}
+                                        </x-jet-nav-link>
+                                    </div>
+
+                                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                        <x-jet-nav-link href="{{ route('leads_import_view') }}" :active="request()->routeIs('leads_import_view')">
+                                            {{ __('Leads Import') }}
                                         </x-jet-nav-link>
                                     </div>
 
@@ -84,13 +89,6 @@
                                             </x-jet-nav-link>
                                         </div>
                                     @endif
-
-
-                                    {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                        <x-jet-nav-link href="{{ url('inventory/oklahoma-inventory') }}" :active="request()->routeIs('inventory')">
-                                            {{ __('Oklahoma Inventory') }}
-                                        </x-jet-nav-link>
-                                    </div> --}}
                                 </div>
                     @endif
                 @endauth
@@ -291,5 +289,3 @@
         </div>
     </div>
 </nav>
-@endauth
-
