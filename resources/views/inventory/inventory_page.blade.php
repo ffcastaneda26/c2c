@@ -26,48 +26,6 @@
                                     <iframe src="https://ctcautogroup.neoverify.com/quick_lead" width="100%" height="700" style="border:none;"></iframe>
                                 </div>
                             </div>
-                            <div class="swiper mySwiper">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        @foreach ($vehicles as $vehicle )
-                                            @if ( $loop->iteration == 1 )
-                                                @if($vehicle->images)
-                                                    @foreach ( explode(",", $vehicle->images) as $image_url)
-                                                        @if ( $loop->iteration == 1 )
-                                                            <div class="swiper-slide">
-                                                                <img src="{{ $image_url }}" alt="Foto"/>
-                                                            </div>
-                                                        @endif
-                                                    @endforeach
-                                                @endif
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                    <div class="swiper-slide">
-                                        @foreach ($vehicles as $vehicle )
-                                            @if ( $loop->iteration == 2 )
-                                                @if($vehicle->images)
-                                                    @foreach ( explode(",", $vehicle->images) as $image_url)
-                                                        @if ( $loop->iteration == 2 )
-                                                            <div class="swiper-slide">
-                                                                <img src="{{ $image_url }}" alt="Foto"/>
-                                                            </div>
-                                                        @endif
-                                                    @endforeach
-                                                @endif
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                    <div class="swiper-slide">
-                                    <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-                                    </div>
-                                    <div class="swiper-slide">
-                                    <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-                                    </div>
-                                </div>
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
-                            </div>
                             <div class="custom-vehicle-details">
                                 @if ($errors->any())
                                     <div class="alert alert-danger bg-red-500">
@@ -85,13 +43,7 @@
                                 @endif
                             </div>
                             <div class="absolute top-96 -right-96 rounded-lg h-96 w-96">
-                                <div class="swiper2 mySwiper">
-                                    <div class="swiper-wrapper">
-                                        @livewire('inventories')
-                                    </div>
-                                    <div class="swiper-button-next"></div>
-                                    <div class="swiper-button-prev"></div>
-                                </div>
+                                @livewire('inventories')
                             </div>
                         </div>
                     </div>
@@ -112,16 +64,12 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
     <style>
         .swiper {
-            width: 30%;
-            height: 5%;
-        }
-        .swiper2 {
-            width: 50%;
-            height: 30%;
+            width: 200px;
+            height: 120px;
         }
         .swiper-slide {
             text-align: center;
-            font-size: 18px;
+            font-size: 15px;
             background: #fff;
             /* Center slide text vertically */
             display: -webkit-box;
@@ -137,15 +85,14 @@
             -webkit-align-items: center;
             align-items: center;
         }
-        .swiper-slide2 img {
+        .swiper-slide img {
             display: block;
-            width: 100%;
-            height: 100%;
+            width: 90%;
+            height: 90%;
             object-fit: cover;
         }
-        </style>
     </style>
-    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></scrip>
     <script src="https://api.dealermade-next.com/v4/system-services/dm-next-hd-viewer-loader" async=""></script>
 
     <!-- Initialize Swiper -->

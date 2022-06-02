@@ -175,3 +175,58 @@ var swiper = new Swiper(".mySwiper1", {
     },
 });
 </script>
+
+<div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            @foreach ($vehicles as $vehicle )
+                @if ( $loop->iteration == 1 )
+                    @if($vehicle->images)
+                        @foreach ( explode(",", $vehicle->images) as $image_url)
+                            @if ( $loop->iteration == 1 )
+                                <div class="swiper-slide">
+                                    <img src="{{ $image_url }}" alt="Foto"/>
+                                </div>
+                            @endif
+                        @endforeach
+                    @endif
+                @endif
+            @endforeach
+        </div>
+        <div class="swiper-slide">
+            @foreach ($vehicles as $vehicle )
+                @if ( $loop->iteration == 2 )
+                    @if($vehicle->images)
+                        @foreach ( explode(",", $vehicle->images) as $image_url)
+                            @if ( $loop->iteration == 2 )
+                                <div class="swiper-slide">
+                                    <img src="{{ $image_url }}" alt="Foto"/>
+                                </div>
+                            @endif
+                        @endforeach
+                    @endif
+                @endif
+            @endforeach
+        </div>
+        <div class="swiper-slide">
+        <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+        </div>
+        <div class="swiper-slide">
+        <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+        </div>
+    </div>
+<div class="swiper-button-next"></div>
+<div class="swiper-button-prev"></div>
+</div>
+
+{{--Ejemplo de slide en livewire
+    <div class="absolute top-96 -right-96 rounded-lg h-96 w-96">
+        <div class="swiper2 mySwiper">
+            <div class="swiper-wrapper">
+                @livewire('inventories')
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+--}}

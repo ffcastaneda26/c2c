@@ -155,8 +155,8 @@ src="https://www.facebook.com/tr?id=468102071256313&ev=PageView&noscript=1" />
     display: none !important;
     }
     .swiper {
-        width: 50%;
-        height: 50%;
+        width: 400px;
+        height: 220px;
     }
     .swiper-slide {
         text-align: center;
@@ -178,8 +178,8 @@ src="https://www.facebook.com/tr?id=468102071256313&ev=PageView&noscript=1" />
     }
     .swiper-slide img {
         display: block;
-        width: 90%;
-        height: 90%;
+        width: 50%;
+        height: 50%;
         object-fit: cover;
     }
     </style>
