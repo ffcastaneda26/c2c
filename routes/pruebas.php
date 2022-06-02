@@ -1,5 +1,5 @@
 <?php
-use App\Models\Inventory;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FtpController;
 use App\Http\Livewire\SliderController;
@@ -43,3 +43,12 @@ Route::get('server_data',function(){
 
 Route::get('slider/{vehicle_id?}',SliderController::class)->name('slider');
 
+Route::get('prueba_json',function(){
+    $json = response()->json([
+        'neo_id' => bin2hex(random_bytes(10)),
+    ]);
+
+    foreach($json->original as $json){
+        echo 'Neo Id=' . $json . '<br>';
+    }
+});
