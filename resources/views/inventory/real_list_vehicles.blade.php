@@ -15,9 +15,11 @@
                         <div class="swiper-wrapper">
                             @foreach ( explode(",", $vehicle->images) as $image_url)
                                 @if($loop->iteration > env('APP_QTY_VEHICLES_SLIDER',3)) @break @endif
-                                <div class="swiper-slide">
-                                    <img src="{{ $image_url }}"/>
-                                </div>
+                                @if($image_url)
+                                    <div class="swiper-slide">
+                                        <img src="{{ $image_url }}"/>
+                                    </div>
+                                @endif
                             @endforeach
                         </div>
                     </div>
