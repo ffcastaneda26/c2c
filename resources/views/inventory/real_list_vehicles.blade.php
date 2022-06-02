@@ -13,15 +13,12 @@
                     onmouseover="getvehicle({{$vehicle->id}})">
                     <div class="swiper mySwiper">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img  src="{{explode(",", $vehicle->images)[0] }}">
-                            </div>
-                            <div class="swiper-slide">
-                                <img  src="{{explode(",", $vehicle->images)[1] }}">
-                            </div>
-                            <div class="swiper-slide">
-                                <img  src="{{explode(",", $vehicle->images)[2] }}">
-                            </div>
+                            @foreach ( explode(",", $vehicle->images) as $image_url)
+                                @if($loop->iteration > env('APP_QTY_VEHICLES_SLIDER',3)) @break @endif
+                                <div class="swiper-slide">
+                                    <img src="{{ $image_url }}"/>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </a>
