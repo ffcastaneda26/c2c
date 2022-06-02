@@ -29,8 +29,14 @@ class LeadsController extends Controller
         $phone          = isset($_POST['phone'])            ? $_POST['phone'] : null;
         $email          = isset($_POST['email'])            ? $_POST['email'] : null;
 
+
         if($campaign_name == '12093493'){
             $campaign_name = 'landing_Ads_0Interest';
+        }
+
+
+        if($campaign_name == '12146491'){
+            $campaign_name = 'Fathers-Day';
         }
 
         $lead = Lead::create([
@@ -40,6 +46,14 @@ class LeadsController extends Controller
             'email'         => $email,
             'phone'         => $phone
         ]);
+
+        // return response()->json([
+        //     'campaign_name' => $lead->campaign_name,
+        //     'name'          => $lead->name,
+        //     'last_name'     => $lead->last_name,
+        //     'email'         => $lead->email,
+        //     'phone'         => $lead->phonephp
+        // ]);
 
         return $this->send_to_neo($lead);
 
@@ -71,6 +85,9 @@ class LeadsController extends Controller
 
                 ]);
         $lead->updateSent_To_Neo();
+
+        $lead->neo_id = $response;
+        $lead->save();
         return $response->json();
         } catch (RequestException $ex) {
             $this->lead->updateSent_To_Neo(false);

@@ -12,8 +12,12 @@ class LeadsImport implements ToModel, WithHeadingRow
 {
     public function model(array $row)
     {
-         $row['created_at'] =  \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject(intval($row['created_at']))
-                        ->format('Y-m-d H:i:s');
+        if( $row['created_at']){
+            $row['created_at'] =  \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject(intval($row['created_at']))
+                            ->format('Y-m-d H:i:s');
+        }else{
+            $row['created_at'] = now();
+        }
 
         try {
             Lead::create($row);
