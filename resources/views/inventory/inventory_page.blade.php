@@ -61,12 +61,18 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
     <style>
         .swiper {
-            width: 200px;
-            height: 120px;
+            width: 217px;
+            height: 162px;
         }
+        @media (max-width: 600px) {
+            .swiper {
+                width: 351px;
+                height: 262px;
+            }
+          }
         .swiper-slide {
             text-align: center;
-            font-size: 15px;
+            font-size: 18px;
             background: #fff;
             /* Center slide text vertically */
             display: -webkit-box;
@@ -84,8 +90,8 @@
         }
         .swiper-slide img {
             display: block;
-            width: 90%;
-            height: 90%;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
         }
     </style>
