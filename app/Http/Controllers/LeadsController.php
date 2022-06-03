@@ -35,6 +35,11 @@ class LeadsController extends Controller
         }
 
 
+        if($campaign_name == '2578627'){
+            $campaign_name = 'Fathers Day Promo';
+        }
+
+
         if($campaign_name == '12146491'){
             $campaign_name = 'Fathers-Day';
         }
