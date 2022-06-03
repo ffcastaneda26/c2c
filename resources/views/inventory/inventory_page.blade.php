@@ -42,9 +42,6 @@
                                 <h1 class="cl-page-title"><span>{{ __('No Records Found') }}</span></h1>
                                 @endif
                             </div>
-                            <div class="absolute top-96 -right-96 rounded-lg h-96 w-96">
-                                @livewire('inventories')
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -98,15 +95,30 @@
     <!-- Initialize Swiper -->
     <script>
     var swiper = new Swiper(".mySwiper", {
-        spaceBetween: 30,
         centeredSlides: true,
-        autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-    },
+        slidesPerView: 'auto',
+        longSwipesMs: 0,
+        loopPreventsSlide:false,
+        longSwipes: true,
+        longSwipesRatio: 0,
+        threshold: 0,
+        slideToClickedSlide:true,
+        speed: 900,
+        loop: true,
+        loopedSlides:2,
+        spaceBetween: 20,
+        keyboard: {
+            enabled: true,
+            onlyInViewport: true,
+        },
+        grabCursor: true,
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        },
         navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
         },
     });
     </script>

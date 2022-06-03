@@ -10,19 +10,23 @@
         <div class="vehicle">
             <div class="gallery-block" style="width: 100%; float: left; margin-right: -100%; position: relative; opacity: 1; display: block; transition: opacity 0.5s ease 0s; z-index: 2;">
                 <a href="{{url('inventory/show/'. App::currentLocale() . '/' . $vehicle->id) }}"
-                    onmouseover="getvehicle({{$vehicle->id}})">
+                title="{{__('Slide Images')}}">
+                <div class="swiper-container">
                     <div class="swiper mySwiper">
                         <div class="swiper-wrapper">
                             @foreach ( explode(",", $vehicle->images) as $image_url)
                                 @if($loop->iteration > env('APP_QTY_VEHICLES_SLIDER',3)) @break @endif
                                 @if($image_url)
                                     <div class="swiper-slide">
-                                        <img src="{{ $image_url }}"/>
+                                        <div class="swiper-zoom-container">
+                                            <img src="{{ $image_url }}"/>
+                                        </div>
                                     </div>
                                 @endif
                             @endforeach
                         </div>
                     </div>
+                </div>
                 </a>
             </div>
 
@@ -54,10 +58,5 @@
 <div class="pagination">
     {{ $vehicles->appends(request()->input())->links('vendor.pagination.tailwind') }}
 </div>
-<script>
-    function getvehicle(vehicle_id) {
-        Livewire.emit('mount', vehicle_id)
-    }
-</script>
 <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 <script src="https://api.dealermade-next.com/v4/system-services/dm-next-hd-viewer-loader" async=""></script>
