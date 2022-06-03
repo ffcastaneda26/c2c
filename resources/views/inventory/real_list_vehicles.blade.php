@@ -28,6 +28,7 @@
                     </div>
                 </div>
                 </a>
+            <span class="text-black font-mono text-xs">{{__('< Swipe >')}}</span>
             </div>
 
             <div class="listing-details">
