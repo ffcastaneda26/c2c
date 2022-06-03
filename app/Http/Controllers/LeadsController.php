@@ -41,8 +41,17 @@ class LeadsController extends Controller
 
 
         if($campaign_name == '12146491'){
-            $campaign_name = 'Fathers-Day';
+            $campaign_name = 'Fathers-Day-Astros';
         }
+
+        if($campaign_name == '12147205'){
+            $campaign_name = 'Fathers-Day-Raffle';
+        }
+
+        if($campaign_name == '12147205'){
+            $campaign_name = 'Fathers-Day-Raffle-sp';
+        }
+
 
         $lead = Lead::create([
             'campaign_name' => $campaign_name,
