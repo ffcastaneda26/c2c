@@ -68,9 +68,6 @@ ojos
                                 <h1 class="cl-page-title"><span>{{ __('No Records Found') }}</span></h1>
                                 @endif
                             </div>
-                            <div class="absolute top-96 -right-96 rounded-lg h-96 w-96">
-                                @livewire('inventories')
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -90,12 +87,18 @@ ojos
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
     <style>
         .swiper {
-            width: 200px;
-            height: 120px;
+            width: 217px;
+            height: 162px;
         }
+        @media (max-width: 600px) {
+            .swiper {
+                width: 351px;
+                height: 262px;
+            }
+          }
         .swiper-slide {
             text-align: center;
-            font-size: 15px;
+            font-size: 18px;
             background: #fff;
             /* Center slide text vertically */
             display: -webkit-box;
@@ -113,8 +116,8 @@ ojos
         }
         .swiper-slide img {
             display: block;
-            width: 90%;
-            height: 90%;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
         }
     </style>
@@ -124,15 +127,30 @@ ojos
     <!-- Initialize Swiper -->
     <script>
     var swiper = new Swiper(".mySwiper", {
-        spaceBetween: 30,
         centeredSlides: true,
-        autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-    },
+        slidesPerView: 'auto',
+        longSwipesMs: 0,
+        loopPreventsSlide:false,
+        longSwipes: true,
+        longSwipesRatio: 0,
+        threshold: 0,
+        slideToClickedSlide:true,
+        speed: 900,
+        loop: true,
+        loopedSlides:2,
+        spaceBetween: 20,
+        keyboard: {
+            enabled: true,
+            onlyInViewport: true,
+        },
+        grabCursor: true,
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        },
         navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
         },
     });
     </script>
