@@ -44,7 +44,7 @@
                     </div>
                     <div class="vehicle-stocks">STOCK  {{  $vehicle->stock }}
                     </div>
-                    <a href="https://ctcautogroup.com/fastpass/#today" class="price">{{ __("Unlock Price") }}</a>
+                    <a href="https://ctcautogroup.com/flashpass/#today" class="price">{{ __("Unlock Price") }}</a>
                 </div>
             </div>
         </div>
@@ -61,3 +61,19 @@
 </script>
 <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 <script src="https://api.dealermade-next.com/v4/system-services/dm-next-hd-viewer-loader" async=""></script>
+<script>
+    const swiper = new Swiper('.swiper', {
+  // Optional parameters
+  direction: 'horizontal',
+  loop: false,
+
+
+  // Navigation arrows
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+
+
+});
+</script>

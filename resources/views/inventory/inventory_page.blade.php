@@ -1,3 +1,29 @@
+<style>
+    swiper-button-next, .swiper-button-prev {
+    position: absolute;
+    border-style:solid;
+    border-color:black;
+    border-width:1px;
+    background-repeat:no-repeat;
+    background-position:50% 50%;
+    left:auto;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    -webkit-background-size: 27px 15px;
+    background-size: 27px 15px;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22236pt%22%20height%3D%22512pt%22%20viewBox%3D%220%200%20236%20512%22%3E%0A%20%20%3Cdefs/%3E%0A%20%20%3Cpath%20d%3D%22M0%2020.45c78.33%2078.63%20157.12%20156.81%20235.31%20235.59C157.05%20334.72%2078.34%20412.96%200%20491.56V20.45z%22/%3E%0A%3C/svg%3E%0A');
+}
+.swiper-button-next:after, .swiper-button-prev:after {
+    display:none;
+  }
+.swiper-button-next{right: 25px;}
+.swiper-button-prev{right:85px;transform: rotate(180deg);
+}
+marca_de_verificación_blanca
+ojos
+
+</style>
 @include('inventory.inventory_head')
     <body class="archive tax-inventory term-texas-inventory term-4 translatepress-en_US material wpb-js-composer js-comp-ver-6.6.0 vc_responsive" data-footer-reveal="false" data-footer-reveal-shadow="none" data-header-format="default" data-body-border="off" data-boxed-style="" data-header-breakpoint="1000" data-dropdown-style="minimal" data-cae="easeOutCubic" data-cad="750" data-megamenu-width="contained" data-aie="none" data-ls="fancybox" data-apte="standard" data-hhun="0" data-fancy-form-rcs="default" data-form-style="default" data-form-submit="regular" data-is="minimal" data-button-style="slightly_rounded_shadow" data-user-account-button="false" data-flex-cols="true" data-col-gap="default" data-header-inherit-rc="false" data-header-search="true" data-animated-anchors="true" data-ajax-transitions="false" data-full-width-header="true" data-slide-out-widget-area="true" data-slide-out-widget-area-style="slide-out-from-right" data-user-set-ocm="off" data-loading-animation="none" data-bg-header="false" data-responsive="1" data-ext-responsive="true" data-ext-padding="90" data-header-resize="1" data-header-color="custom" data-transparent-header="false" data-cart="false" data-remove-m-parallax="" data-remove-m-video-bgs="" data-m-animate="0" data-force-header-trans-color="light" data-smooth-scrolling="0" data-permanent-transparent="false" >
         @include('inventory.inventory_scripts_menu_top')
