@@ -55,9 +55,6 @@ class LeadsController extends Controller
                 $campaign_name = '0% Español';
                 break;
 
-            case '12146491':
-                $campaign_name = 'Astros';
-                break;
 
             case '12147390':
                 $campaign_name = 'Fathers Day';
