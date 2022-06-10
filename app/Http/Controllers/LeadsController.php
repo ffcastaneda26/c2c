@@ -30,27 +30,49 @@ class LeadsController extends Controller
         $email          = isset($_POST['email'])            ? $_POST['email'] : null;
 
 
-        if($campaign_name == '12093493'){
-            $campaign_name = 'landing_Ads_0Interest';
+        switch ($campaign_name) {
+            case '12093493':
+                $campaign_name = 'landing_Ads_0Interest';
+                break;
+
+            case '2578627':
+                $campaign_name = 'Fathers Day Promo';
+                break;
+
+            case '12146491':
+                $campaign_name = 'Fathers-Day-Astros';
+                break;
+
+            case '12147205':
+                $campaign_name = 'Día del Padre';
+                break;
+
+            case '12093493':
+                $campaign_name = '0% English';
+                break;
+
+            case '12147187':
+                $campaign_name = '0% Español';
+                break;
+
+            case '12146491':
+                $campaign_name = 'Astros';
+                break;
+
+            case '12147390':
+                $campaign_name = 'Fathers Day';
+                break;
+
+            case '12147453':
+                $campaign_name = 'Skipe Line';
+                break;
+
+            case '12150753':
+                $campaign_name = 'Salta La Fila';
+                break;
+
         }
 
-
-        if($campaign_name == '2578627'){
-            $campaign_name = 'Fathers Day Promo';
-        }
-
-
-        if($campaign_name == '12146491'){
-            $campaign_name = 'Fathers-Day-Astros';
-        }
-
-        if($campaign_name == '12147205'){
-            $campaign_name = 'Fathers-Day-Raffle';
-        }
-
-        if($campaign_name == '12147205'){
-            $campaign_name = 'Fathers-Day-Raffle-sp';
-        }
 
 
         $lead = Lead::create([
