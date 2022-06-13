@@ -19,7 +19,9 @@ class LeadsImport implements ToModel, WithHeadingRow
         }
 
         try {
-            Lead::create($row);
+            if($row['campaign_name'] && $row['name'] && $row['phone'] && $row['email']){
+                Lead::create($row);
+            }
         } catch (\Illuminate\Database\QueryException $exception) {
             return back()->with(['error',__('Leads were not imported'),]);
         }
